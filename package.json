@@ -1,0 +1,22 @@
+{
+  "name": "shopin6weeks",
+  "version": "1.0.0",
+  "description": "shopin6weeks",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/appolonist/shopin6weeks.git"
+  },
+  "keywords": [
+    "shopin6weeks"
+  ],
+  "author": "Karol Piotrowski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/appolonist/shopin6weeks/issues"
+  },
+  "homepage": "https://github.com/appolonist/shopin6weeks#readme"
+}
