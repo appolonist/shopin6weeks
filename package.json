@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/appolonist/shopin6weeks/issues"
   },
-  "homepage": "https://github.com/appolonist/shopin6weeks#readme"
+  "homepage": "https://github.com/appolonist/shopin6weeks#readme",
+  "devDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
 }
