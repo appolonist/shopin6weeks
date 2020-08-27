@@ -1,27 +1,30 @@
-const path = require('path')
-
-
-const { mode } = require("webpack-nano/argv");
-const {
-  MiniHtmlWebpackPlugin,
-} = require("mini-html-webpack-plugin");
-const { WebpackPluginServe } = require("webpack-plugin-serve");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  watch: mode === "development",
-  entry: path.resolve(__dirname, 'src', 'index.js'),
-  mode,
-  plugins: [
-    new MiniHtmlWebpackPlugin({
-      context: {
-        title: "Appolonist Shop",
+  entry: './src/index.jsx',
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
       },
-    }),
-    new WebpackPluginServe({
-      port: process.env.PORT || 8080,
-      static: "./dist",
-      liveReload: true,
-      waitForBuild: true,
-    }),
-  ],
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader"
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    })
+  ]
 };
