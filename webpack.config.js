@@ -16,11 +16,20 @@ const commonConfig = merge([
 ]);
 
 const productionConfig = merge([
-  parts.minifyCSS({
-    options: {
-      preset: ["default"],
+  {
+    output: {
+      chunkFilename: "[name].[contenthash:4].js",
+      filename: "[name].[contenthash:4].js",
     },
-]);
+    recordsPath: path.join(__dirname, "records.json"),
+  },
+    parts.minifyCSS({
+      options: {
+        preset: ["default"],
+      },
+    }),
+    parts.minifyJavaScript(),
+  ]);
 
 const developmentConfig = merge([
   parts.devServer(),

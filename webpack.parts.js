@@ -1,6 +1,7 @@
 const { WebpackPluginServe } = require("webpack-plugin-serve");
 const path = require("path");
 const webpack = require('webpack');
+const TerserPlugin = require("terser-webpack-plugin");
 //const glob = require("glob");
 const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -74,6 +75,12 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
     ],
   });
   
+  exports.minifyJavaScript = () => ({
+    optimization: {
+      minimizer: [new TerserPlugin({ sourceMap: true })],
+    },
+  });
+
   exports.loadJavaScript = () => ({
     module: {
       rules: [

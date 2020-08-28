@@ -1,0 +1,35 @@
+{
+  "modules": {
+    "byIdentifier": {
+      "node_modules/react/index.js": 0,
+      "node_modules/object-assign/index.js": 1,
+      "node_modules/react-dom/index.js": 2,
+      "node_modules/react/cjs/react.production.min.js": 3,
+      "node_modules/react-dom/cjs/react-dom.production.min.js": 4,
+      "node_modules/scheduler/index.js": 5,
+      "node_modules/scheduler/cjs/scheduler.production.min.js": 6,
+      "node_modules/babel-loader/lib/index.js??ref--4!src/index.jsx 473ea99ab2124354c3c24931916ae0b2": 7
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7
+    }
+  },
+  "chunks": {
+    "byName": {
+      "app": 0
+    },
+    "bySource": {
+      "0 app": 0
+    },
+    "usedIds": [
+      0
+    ]
+  }
+}
