@@ -198,3 +198,7 @@ exports.devServer = () => ({
       ],
     },
   });
+
+  exports.generateSourceMaps = ({ type }) => ({
+    devtool: type,
+  });

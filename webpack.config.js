@@ -31,14 +31,26 @@ const productionConfig = merge([
     },
     recordsPath: path.join(__dirname, "records.json"),
   },
+  
+    parts.minifyJavaScript(),
     parts.minifyCSS({
       options: {
         preset: ["default"],
       },
     }),
-    parts.minifyJavaScript(),
     parts.extractCSS({ loaders: cssLoaders }),
     parts.eliminateUnusedCSS(),
+    parts.generateSourceMaps({ type: "source-map" }),
+    {
+      optimization: {
+        splitChunks: {
+          chunks: "all",
+        },
+        runtimeChunk: {
+          name: "runtime",
+        },
+      },
+    },
     parts.attachRevision(),
   ]);
 
