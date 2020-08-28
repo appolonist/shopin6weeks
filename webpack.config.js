@@ -15,7 +15,12 @@ const commonConfig = merge([
   parts.setFreeVariable("HELLO", "hello from config") //test,
 ]);
 
-const productionConfig = merge([]);
+const productionConfig = merge([
+  parts.minifyCSS({
+    options: {
+      preset: ["default"],
+    },
+]);
 
 const developmentConfig = merge([
   parts.devServer(),
