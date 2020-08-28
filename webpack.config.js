@@ -15,6 +15,12 @@ const commonConfig = merge([
   parts.loadJavaScript(),
   parts.setFreeVariable("HELLO", "hello from config"), //test,
   parts.clean(),
+  parts.loadImages({
+    options: {
+      limit: 15000,
+      name: "[name].[contenthash:4].[ext]",
+    },
+  }),
 ]);
 
 const productionConfig = merge([
@@ -38,6 +44,7 @@ const productionConfig = merge([
 
 const developmentConfig = merge([
   parts.devServer(),
+  parts.extractCSS({ options: { hmr: true }, loaders: cssLoaders })
 ]);
 
 const getConfig = (mode) => {

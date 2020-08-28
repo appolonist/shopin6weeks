@@ -53,5 +53,8 @@
     "last 1 version",
     "Firefox ESR",
     "not dead"
-  ]
+  ],
+  "dependencies": {
+    "url-loader": "^4.1.0"
+  }
 }
