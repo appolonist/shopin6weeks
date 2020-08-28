@@ -3,6 +3,7 @@ const path = require("path");
 const webpack = require('webpack');
 const TerserPlugin = require("terser-webpack-plugin");
 const GitRevisionPlugin = require("git-revision-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 //const glob = require("glob");
 const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -84,6 +85,10 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
     ],
   });
   
+  exports.clean = (path) => ({
+    plugins: [new CleanWebpackPlugin()],
+  });
+
   exports.minifyJavaScript = () => ({
     optimization: {
       minimizer: [new TerserPlugin({ sourceMap: true })],

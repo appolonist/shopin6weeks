@@ -12,7 +12,8 @@ const commonConfig = merge([
     
   },
   parts.loadJavaScript(),
-  parts.setFreeVariable("HELLO", "hello from config") //test,
+  parts.setFreeVariable("HELLO", "hello from config"), //test,
+  parts.clean(),
 ]);
 
 const productionConfig = merge([
