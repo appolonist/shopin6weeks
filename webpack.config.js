@@ -1,30 +1,40 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const { mode } = require("webpack-nano/argv");
+const { merge } = require("webpack-merge");
+const path = require("path");
+const parts = require("./webpack.parts");
 
-module.exports = {
-  entry: './src/index.jsx',
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader"
-          }
-        ]
-      }
-    ]
+const commonConfig = merge([
+  {
+    output: {
+      filename: '[name].js',
+      path: path.join(__dirname, "dist"),
+    },
+    
   },
-  plugins: [
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
-    })
-  ]
+  parts.loadJavaScript(),
+]);
+
+const productionConfig = merge([]);
+
+const developmentConfig = merge([
+  parts.devServer(),
+]);
+
+const getConfig = (mode) => {
+  const pages = [
+    parts.page({
+      title: "Appolonist Shop",
+      entry: {
+        app: path.join(__dirname, "src", "index.jsx"),
+      },
+      chunks: ["app", "runtime", "vendor"],
+      mode
+    }),
+  ];
+  const config = mode === "production" ? productionConfig : developmentConfig;
+
+  return merge([commonConfig, config, { mode }].concat(pages));
 };
+
+module.exports = getConfig(mode);
+
