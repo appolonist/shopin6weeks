@@ -7,6 +7,7 @@ const GitRevisionPlugin = require("git-revision-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const glob = require("glob");
 const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
 
@@ -113,6 +114,42 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
       minimizer: [new TerserPlugin({ sourceMap: true })],
     },
   });
+
+  exports.extractCSS = ({ options = {}, loaders = [] } = {}) => {
+    return {
+      module: {
+        rules: [
+          {
+            test: /\.css$/,
+            use: [
+              { loader: MiniCssExtractPlugin.loader, options },
+              "css-loader",
+            ].concat(loaders),
+          },
+        ],
+      },
+      plugins: [
+        new MiniCssExtractPlugin({
+          filename: "[name].[contenthash:4].css",
+        }),
+      ],
+    };
+  };
+
+  exports.tailwind = () => ({
+    loader: "postcss-loader",
+    options: {
+      plugins: [require("tailwindcss")()],
+    },
+  });
+  
+  exports.autoprefix = () => ({
+    loader: "postcss-loader",
+    options: {
+      plugins: [require("autoprefixer")()],
+    },
+  });
+  
 
   exports.loadJavaScript = () => ({
     module: {
