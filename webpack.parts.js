@@ -1,14 +1,17 @@
 const { WebpackPluginServe } = require("webpack-plugin-serve");
+const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 const path = require("path");
 const webpack = require('webpack');
 const TerserPlugin = require("terser-webpack-plugin");
 const GitRevisionPlugin = require("git-revision-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-//const glob = require("glob");
+const glob = require("glob");
 const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
+
 const APP_SOURCE = path.join(__dirname, "src");
+const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
 
 exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
     entry:
@@ -87,6 +90,22 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
   
   exports.clean = (path) => ({
     plugins: [new CleanWebpackPlugin()],
+  });
+
+  exports.eliminateUnusedCSS = () => ({
+    plugins: [
+      new PurgeCSSPlugin({
+        whitelistPatterns: [],
+        paths: ALL_FILES, 
+        extractors: [
+          {
+            extractor: (content) =>
+              content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [],
+            extensions: ["html"],
+          },
+        ],
+      }),
+    ],
   });
 
   exports.minifyJavaScript = () => ({

@@ -30,6 +30,7 @@ const productionConfig = merge([
       },
     }),
     parts.minifyJavaScript(),
+    parts.eliminateUnusedCSS(),
     parts.attachRevision(),
   ]);
 
