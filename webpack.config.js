@@ -29,6 +29,7 @@ const productionConfig = merge([
       },
     }),
     parts.minifyJavaScript(),
+    parts.attachRevision(),
   ]);
 
 const developmentConfig = merge([
