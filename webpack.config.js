@@ -2,7 +2,7 @@ const { mode } = require("webpack-nano/argv");
 const { merge } = require("webpack-merge");
 const path = require("path");
 const parts = require("./webpack.parts");
-const cssLoaders = [parts.autoprefix(), parts.tailwind()];
+const cssLoaders = [];
 
 const commonConfig = merge([
   {
@@ -12,9 +12,10 @@ const commonConfig = merge([
     },
     
   },
-  parts.loadJavaScript(),
-  parts.setFreeVariable("HELLO", "hello from config"), //test,
   parts.clean(),
+  parts.loadJavaScript(),
+  parts.loadCSS(),
+  parts.setFreeVariable("HELLO", "hello from config"), //test,
   parts.loadImages({
     options: {
       limit: 15000,
@@ -38,8 +39,8 @@ const productionConfig = merge([
         preset: ["default"],
       },
     }),
-    parts.extractCSS({ loaders: cssLoaders }),
     parts.eliminateUnusedCSS(),
+    parts.extractCSS({ devMode: false}),
     parts.generateSourceMaps({ type: "source-map" }),
     {
       optimization: {
@@ -56,7 +57,8 @@ const productionConfig = merge([
 
 const developmentConfig = merge([
   parts.devServer(),
-  parts.extractCSS({ options: { hmr: true }, loaders: cssLoaders })
+  parts.extractCSS({ devMode: true}),
+ 
 ]);
 
 const getConfig = (mode) => {
@@ -67,7 +69,8 @@ const getConfig = (mode) => {
         app: path.join(__dirname, "src", "index.jsx"),
       },
       chunks: ["app", "runtime", "vendor"],
-      mode
+      mode,
+      template: "./src/index.html"
     }),
   ];
   const config = mode === "production" ? productionConfig : developmentConfig;

@@ -6,7 +6,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const GitRevisionPlugin = require("git-revision-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const glob = require("glob");
-const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
@@ -20,33 +20,14 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
         ? addEntryToAll(entry, "webpack-plugin-serve/client")
         : entry,
     plugins: [
-      new MiniHtmlWebpackPlugin({
+      new HtmlWebpackPlugin({
+        template,
         chunks,
-        filename: "index.html",
-        context: {
-          title: 'Appolonist Shop',
-          favicon: 'https://assets-cdn.github.com/favicon.ico',
-          container: 'app',
-          trimWhitespace: true,
-        },
-        template: () => `<!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-            <meta name="description" content="Appolonist Shop" />
-          <meta name="keywords" content="Appolonist Shop" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel="stylesheet" href="style.css" type="text/css" />
-            <title>Appolonist Shop</title>
-            <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-        </head>
-        <body>
-            <div id="app"></div>
-            <script src="app.js" type="text/javascript"></script>
-        </body>
-        </html>`
-      }),
+        title,
+        minify: {
+          collapseWhitespace: true
+        }
+      })
     ],
   });
 
@@ -89,7 +70,7 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
     ],
   });
   
-  exports.clean = (path) => ({
+  exports.clean = () => ({
     plugins: [new CleanWebpackPlugin()],
   });
 
@@ -115,32 +96,37 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
     },
   });
 
-  exports.extractCSS = ({ options = {}, loaders = [] } = {}) => {
-    return {
-      module: {
-        rules: [
-          {
-            test: /\.css$/,
-            use: [
-              { loader: MiniCssExtractPlugin.loader, options },
-              "css-loader",
-            ].concat(loaders),
-          },
-        ],
-      },
-      plugins: [
-        new MiniCssExtractPlugin({
-          filename: "[name].[contenthash:4].css",
-        }),
+  exports.extractCSS = ({devMode}) => ({
+    module: {
+      rules: [
+        {
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+            },
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: {
+                    localIdentName: '[local]'
+                  }
+              }
+            },
+             //'postcss-loader',
+            //'sass-loader',
+          ],
+        },
       ],
-    };
-  };
-
-  exports.tailwind = () => ({
-    loader: "postcss-loader",
-    options: {
-      plugins: [require("tailwindcss")()],
     },
+    plugins: [
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: devMode ? '[name].css' : '[name].[hash].css',
+        chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+      }),
+    ],
   });
   
   exports.autoprefix = () => ({
@@ -149,7 +135,17 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
       plugins: [require("autoprefixer")()],
     },
   });
-  
+
+  exports.loadCSS = () => ({
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader'],
+        },
+      ],
+    },
+  });
 
   exports.loadJavaScript = () => ({
     module: {
