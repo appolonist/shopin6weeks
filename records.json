@@ -8,7 +8,30 @@
       "node_modules/react-dom/cjs/react-dom.production.min.js": 4,
       "node_modules/scheduler/index.js": 5,
       "node_modules/scheduler/cjs/scheduler.production.min.js": 6,
-      "node_modules/babel-loader/lib/index.js??ref--4!src/index.jsx 473ea99ab2124354c3c24931916ae0b2": 7
+      "node_modules/babel-loader/lib/index.js??ref--4!src/index.jsx 473ea99ab2124354c3c24931916ae0b2": 7,
+      "node_modules/style-loader/dist/cjs.js!node_modules/css-loader/dist/cjs.js!node_modules/mini-css-extract-plugin/dist/loader.js!node_modules/css-loader/dist/cjs.js??ref--7-1!src/App/style.css": 8,
+      "node_modules/css-loader/dist/runtime/api.js": 9,
+      "node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js": 10,
+      "node_modules/css-loader/dist/cjs.js!node_modules/mini-css-extract-plugin/dist/loader.js!node_modules/css-loader/dist/cjs.js??ref--7-1!src/App/style.css": 11,
+      "node_modules/mini-css-extract-plugin/dist/loader.js!node_modules/css-loader/dist/cjs.js??ref--6-1!src/App/style.css": 8,
+      "node_modules/mini-css-extract-plugin/dist/loader.js!node_modules/css-loader/dist/cjs.js!src/App/style.css": 8,
+      "node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-0!node_modules/css-loader/dist/cjs.js!src/App/style.css": 8,
+      "node_modules/webpack-plugin-serve/lib/client/log.js": 9,
+      "node_modules/webpack-plugin-serve/lib/client/overlays/util.js": 10,
+      "multi src/index.jsx webpack-plugin-serve/client": 11,
+      "node_modules/webpack-plugin-serve/client.js": 12,
+      "node_modules/webpack-plugin-serve/lib/client/client.js": 13,
+      "node_modules/webpack-plugin-serve/lib/client/ClientSocket.js": 14,
+      "node_modules/webpack-plugin-serve/lib/client/hmr.js": 15,
+      "node_modules/webpack/buildin/module.js": 16,
+      "node_modules/webpack-plugin-serve/lib/client/overlays/progress-minimal.js": 17,
+      "node_modules/webpack-plugin-serve/lib/client/overlays/progress.js": 18,
+      "node_modules/webpack-plugin-serve/lib/client/overlays/status.js": 19,
+      "node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-0!node_modules/css-loader/dist/cjs.js??ref--6-1!src/App/style.css": 8,
+      "node_modules/style-loader/dist/cjs.js!node_modules/css-loader/dist/cjs.js??ref--6-1!src/App/style.css": 8,
+      "node_modules/css-loader/dist/cjs.js??ref--6-1!src/App/style.css": 11,
+      "node_modules/style-loader/dist/cjs.js!node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-1!node_modules/css-loader/dist/cjs.js??ref--6-2!src/App/style.css": 8,
+      "node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-1!node_modules/css-loader/dist/cjs.js??ref--6-2!src/App/style.css": 9
     },
     "usedIds": {
       "0": 0,
@@ -18,18 +41,159 @@
       "4": 4,
       "5": 5,
       "6": 6,
-      "7": 7
+      "7": 7,
+      "8": 8,
+      "9": 9,
+      "10": 10,
+      "11": 11,
+      "12": 12,
+      "13": 13,
+      "14": 14,
+      "15": 15,
+      "16": 16,
+      "17": 17,
+      "18": 18,
+      "19": 19
     }
   },
   "chunks": {
     "byName": {
-      "app": 0
+      "app": 0,
+      "runtime": 1,
+      "vendors~app": 2
     },
     "bySource": {
-      "0 app": 0
+      "0 app": 1,
+      "2 app": 0,
+      "1 app": 2
     },
     "usedIds": [
-      0
+      0,
+      1,
+      2
     ]
-  }
+  },
+  "HtmlWebpackCompiler": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/html-webpack-plugin/lib/loader.js!src/index.html": 0
+        },
+        "usedIds": {
+          "0": 0
+        }
+      },
+      "chunks": {
+        "byName": {
+          "HtmlWebpackPlugin_0": 0
+        },
+        "bySource": {
+          "0 HtmlWebpackPlugin_0": 0
+        },
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--7-1!src/App/style.css": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/dist/runtime/api.js": 0,
+          "node_modules/css-loader/dist/cjs.js??ref--7-1!src/App/style.css": 1
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1
+        }
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {
+          "0 mini-css-extract-plugin": 0
+        },
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--6-1!src/App/style.css": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/dist/runtime/api.js": 0,
+          "node_modules/css-loader/dist/cjs.js??ref--6-1!src/App/style.css": 1
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1
+        }
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {
+          "0 mini-css-extract-plugin": 0
+        },
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js!src/App/style.css": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/dist/runtime/api.js": 0,
+          "node_modules/css-loader/dist/cjs.js!src/App/style.css": 1
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1
+        }
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {
+          "0 mini-css-extract-plugin": 0
+        },
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--6-2!src/App/style.css": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/dist/runtime/api.js": 0,
+          "node_modules/css-loader/dist/cjs.js??ref--6-2!src/App/style.css": 1
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1
+        }
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {
+          "0 mini-css-extract-plugin": 0
+        },
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ]
 }

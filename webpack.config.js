@@ -14,7 +14,6 @@ const commonConfig = merge([
   },
   parts.clean(),
   parts.loadJavaScript(),
-  parts.loadCSS(),
   parts.setFreeVariable("HELLO", "hello from config"), //test,
   parts.loadImages({
     options: {
@@ -32,15 +31,14 @@ const productionConfig = merge([
     },
     recordsPath: path.join(__dirname, "records.json"),
   },
-  
     parts.minifyJavaScript(),
     parts.minifyCSS({
       options: {
         preset: ["default"],
       },
     }),
+    parts.extractCSS({ devMode: false }),
     parts.eliminateUnusedCSS(),
-    parts.extractCSS({ devMode: false}),
     parts.generateSourceMaps({ type: "source-map" }),
     {
       optimization: {
@@ -57,7 +55,7 @@ const productionConfig = merge([
 
 const developmentConfig = merge([
   parts.devServer(),
-  parts.extractCSS({ devMode: true}),
+  parts.extractCSS({ devMode: true })
  
 ]);
 

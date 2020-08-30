@@ -104,15 +104,25 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
           use: [
             {
               loader: MiniCssExtractPlugin.loader,
-            },
-              {
-                loader: 'css-loader',
-                options: {
-                  modules: {
-                    localIdentName: '[local]'
-                  }
+              options:{
+                hmr: devMode ? true : false
               }
             },
+            {
+              loader:'css-loader',
+              options: {
+                //mode: 'local',
+                esModule: true,
+                import: true,
+                modules: {
+                  namedExport: true,
+                  auto: true,
+                  localIdentName: '[local]'
+                }
+  
+              }
+          
+          }
              //'postcss-loader',
             //'sass-loader',
           ],
@@ -141,7 +151,22 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
       rules: [
         {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
+          use: ['style-loader', 
+          {
+            loader:'css-loader',
+            options: {
+              //mode: 'local',
+              esModule: true,
+              import: true,
+              modules: {
+                namedExport: true,
+                auto: true,
+                localIdentName: '[local]'
+              }
+
+            }
+        
+        }],
         },
       ],
     },
@@ -169,7 +194,7 @@ exports.devServer = () => ({
     watch: true,
     plugins: [
       new WebpackPluginServe({
-        port: process.env.PORT || 8080,
+        port: process.env.PORT || 8081,
         static: "./dist",
         liveReload: true,
         waitForBuild: true,
