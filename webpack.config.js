@@ -38,7 +38,7 @@ const productionConfig = merge([
       },
     }),
     parts.extractCSS({ devMode: false }),
-    parts.eliminateUnusedCSS(),
+    //parts.eliminateUnusedCSS(), // uncoment for bootstrap, tailwindcss or other framework
     parts.generateSourceMaps({ type: "source-map" }),
     {
       optimization: {

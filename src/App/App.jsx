@@ -1,7 +1,6 @@
 import React from 'react';
+import { Header } from '../Header';
 import './style.css';
 export function App(){
-    return (
-        <h1 className="hello">Hello World!!</h1>
-    );
+    return <Header />
 }

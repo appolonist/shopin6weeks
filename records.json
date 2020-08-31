@@ -31,7 +31,9 @@
       "node_modules/style-loader/dist/cjs.js!node_modules/css-loader/dist/cjs.js??ref--6-1!src/App/style.css": 8,
       "node_modules/css-loader/dist/cjs.js??ref--6-1!src/App/style.css": 11,
       "node_modules/style-loader/dist/cjs.js!node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-1!node_modules/css-loader/dist/cjs.js??ref--6-2!src/App/style.css": 8,
-      "node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-1!node_modules/css-loader/dist/cjs.js??ref--6-2!src/App/style.css": 9
+      "node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-1!node_modules/css-loader/dist/cjs.js??ref--6-2!src/App/style.css": 9,
+      "node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-0!node_modules/css-loader/dist/cjs.js??ref--6-1!src/Header/style.css": 7,
+      "node_modules/babel-loader/lib/index.js??ref--4!src/index.jsx 461dce4fec5bb716f6994e181251811a": 9
     },
     "usedIds": {
       "0": 0,
@@ -177,6 +179,31 @@
         "byIdentifier": {
           "node_modules/css-loader/dist/runtime/api.js": 0,
           "node_modules/css-loader/dist/cjs.js??ref--6-2!src/App/style.css": 1
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1
+        }
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {
+          "0 mini-css-extract-plugin": 0
+        },
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/css-loader/dist/cjs.js??ref--6-1!src/Header/style.css": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/dist/runtime/api.js": 0,
+          "node_modules/css-loader/dist/cjs.js??ref--6-1!src/Header/style.css": 1
         },
         "usedIds": {
           "0": 0,
