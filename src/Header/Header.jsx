@@ -1,12 +1,15 @@
 import React from 'react';
+import { Logo } from '../Logo';
+import { Navbar } from '../Navbar';
 import './style.css';
 
 export const Header = () => {
     
-       return( 
-       <div className="logo">
-            <a href="/" aria-label="Appolonist Shop Home">Appolonist Mobile</a>
-        </div>
+       return(
+           <header>
+               <Logo />
+               <Navbar />
+           </header>       
         )
 };
 
