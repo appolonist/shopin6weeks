@@ -10,6 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
+const jsx = require("@babel/plugin-syntax-jsx")
 
 const APP_SOURCE = path.join(__dirname, "src");
 const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
@@ -27,7 +28,8 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
         minify: {
           collapseWhitespace: true
         }
-      })
+      }),
+      new jsx()
     ],
   });
 

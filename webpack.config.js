@@ -2,7 +2,6 @@ const { mode } = require("webpack-nano/argv");
 const { merge } = require("webpack-merge");
 const path = require("path");
 const parts = require("./webpack.parts");
-const cssLoaders = [];
 
 const commonConfig = merge([
   {
