@@ -229,6 +229,6 @@ exports.devServer = () => ({
   exports.copyFromStaticToDist = () => ({
     module: {},
     plugins: [
-      new CopyWebpackPlugin( { patterns:[{from: 'src/static', to: 'dist'}]} ),
+      new CopyWebpackPlugin( { patterns:[{from: 'src/static', to: 'static'}]} ),
     ],
   })
