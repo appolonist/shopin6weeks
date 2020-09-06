@@ -1,8 +1,8 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import App from './App';
 
 it("renders without crashing", () => {
-  const wrapper = mount(<App />);
+  const wrapper = shallow(<App />);
   expect(wrapper.state("error")).toEqual(null);
 });

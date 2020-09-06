@@ -10,10 +10,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
-const jsx = require("@babel/plugin-syntax-jsx")
 
-const APP_SOURCE = path.join(__dirname, "src");
-const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
+const APP_SOURCE = path.resolve(__dirname, "../src");
+const ALL_FILES = glob.sync(path.resolve(__dirname, "../src/*.js"));
 
 exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
     entry:
@@ -28,8 +27,7 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
         minify: {
           collapseWhitespace: true
         }
-      }),
-      new jsx()
+      })
     ],
   });
 
@@ -183,9 +181,9 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
           exclude: /node_modules/,
           use: {
             loader: "babel-loader",
-            options: {
-              presets: ["@babel/preset-env", "@babel/preset-react"]
-            }
+           // options: {
+            //  presets: ["@babel/preset-env", "@babel/preset-react"]
+            //}
           }
         },
       ],
@@ -197,7 +195,7 @@ exports.devServer = () => ({
     plugins: [
       new WebpackPluginServe({
         port: process.env.PORT || 8080,
-        static: "./dist",
+        static: path.resolve(__dirname, "../dist"),
         liveReload: true,
         waitForBuild: true,
         open: true,

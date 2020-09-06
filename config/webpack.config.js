@@ -3,24 +3,7 @@ const { merge } = require("webpack-merge");
 const path = require("path");
 const parts = require("./webpack.parts");
 
-const commonConfig = merge([
-  {
-    output: {
-      filename: '[name].js',
-      path: path.join(__dirname, "dist"),
-    },
-    
-  },
-  parts.clean(),
-  parts.loadJavaScript(),
-  parts.setFreeVariable("HELLO", "hello from config"), //test,
-  parts.loadImages({
-    options: {
-      limit: 15000,
-      name: "[name].[contenthash:4].[ext]",
-    },
-  }),
-]);
+const commonConfig = require('./webpack.base.config');
 
 const productionConfig = merge([
   {
@@ -63,11 +46,11 @@ const getConfig = (mode) => {
     parts.page({
       title: "Appolonist Shop",
       entry: {
-        app: path.join(__dirname, "src", "index.jsx"),
+        app: path.resolve(__dirname, "../src/index.jsx"),
       },
       chunks: ["app", "runtime", "vendor"],
       mode,
-      template: "./src/index.html"
+      template: path.resolve(__dirname, "../src/index.html")
     }),
   ];
   const config = mode === "production" ? productionConfig : developmentConfig;
