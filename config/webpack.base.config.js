@@ -10,6 +10,7 @@ const commonConfig = merge([
       
     },
     parts.clean(),
+    parts.copyFromStaticToDist(),
     parts.loadJavaScript(),
     parts.setFreeVariable("HELLO", "hello from config"), //test,
     parts.loadImages({

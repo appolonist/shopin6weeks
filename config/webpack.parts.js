@@ -10,6 +10,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
+const CopyWebpackPlugin = require('copy-webpack-plugin'); 
+
 
 const APP_SOURCE = path.resolve(__dirname, "../src");
 const ALL_FILES = glob.sync(path.resolve(__dirname, "../src/*.js"));
@@ -194,7 +196,7 @@ exports.devServer = () => ({
     watch: true,
     plugins: [
       new WebpackPluginServe({
-        port: process.env.PORT || 8080,
+        port: process.env.PORT || 8081,
         static: path.resolve(__dirname, "../dist"),
         liveReload: true,
         waitForBuild: true,
@@ -223,3 +225,10 @@ exports.devServer = () => ({
   exports.generateSourceMaps = ({ type }) => ({
     devtool: type,
   });
+
+  exports.copyFromStaticToDist = () => ({
+    module: {},
+    plugins: [
+      new CopyWebpackPlugin( { patterns:[{from: 'src/static', to: 'dist'}]} ),
+    ],
+  })
