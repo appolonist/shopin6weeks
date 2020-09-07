@@ -1,7 +1,7 @@
 const { merge } = require("webpack-merge");
 const path = require("path");
 const parts = require("./webpack.parts");
-const APP_DIR = path.resolve(__dirname, '../src');
+const APP_DIR = path.join(__dirname, '..', 'src/index.js');
 const commonConfig = merge([
     {
       entry: ['@babel/polyfill', APP_DIR],
