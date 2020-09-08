@@ -5,41 +5,20 @@ const parts = require("./webpack.parts");
 
 const commonConfig = require('./webpack.base.config');
 
-const productionConfig = merge([
+const productionConfig = require('./webpack.prod.config');
+
+const developmentConfig = (mode) => { 
+  return merge([
   {
     output: {
-      chunkFilename: "[name].[contenthash:4].js",
-      filename: "[name].[contenthash:4].js",
+      filename: '[name].js',
     },
-    recordsPath: path.join(__dirname, "records.json"),
+    mode
   },
-    parts.minifyJavaScript(),
-    parts.minifyCSS({
-      options: {
-        preset: ["default"],
-      },
-    }),
-    parts.extractCSS({ devMode: false }),
-    //parts.eliminateUnusedCSS(), // uncoment for bootstrap, tailwindcss or other framework
-    parts.generateSourceMaps({ type: "source-map" }),
-    {
-      optimization: {
-        splitChunks: {
-          chunks: "all",
-        },
-        runtimeChunk: {
-          name: "runtime",
-        },
-      },
-    },
-    parts.attachRevision(),
-  ]);
-
-const developmentConfig = merge([
   parts.devServer(),
-  parts.extractCSS({ devMode: true })
+  parts.extractCSS(mode)
  
-]);
+])};
 
 const getConfig = (mode) => {
   const pages = [
@@ -53,9 +32,9 @@ const getConfig = (mode) => {
       template: path.join(__dirname, "../src/index.html")
     }),
   ];
-  const config = mode === "production" ? productionConfig : developmentConfig;
+  const config = mode === "production" ? productionConfig(mode): developmentConfig;
 
-  return merge([commonConfig, config, { mode }].concat(pages));
+  return merge([commonConfig, config].concat(pages));
 };
 
 module.exports = getConfig(mode);

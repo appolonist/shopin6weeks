@@ -2,7 +2,6 @@ const { WebpackPluginServe } = require("webpack-plugin-serve");
 const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 const path = require("path");
 const webpack = require('webpack');
-const TerserPlugin = require("terser-webpack-plugin");
 const GitRevisionPlugin = require("git-revision-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const glob = require("glob");
@@ -11,7 +10,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
 const CopyWebpackPlugin = require('copy-webpack-plugin'); 
-
+const Visualizer = require('webpack-visualizer-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const APP_SOURCE = path.resolve(__dirname, "../src");
 const ALL_FILES = glob.sync(path.resolve(__dirname, "../src/*.js"));
@@ -93,12 +93,23 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
   });
 
   exports.minifyJavaScript = () => ({
+
     optimization: {
-      minimizer: [new TerserPlugin({ sourceMap: true })],
-    },
+      runtimeChunk: 'single',
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all'
+          }
+        }
+      },
+      minimizer: [new TerserPlugin()],
+    },   
   });
 
-  exports.extractCSS = ({devMode}) => ({
+  exports.extractCSS = (mode) => ({
     module: {
       rules: [
         {
@@ -107,7 +118,7 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
             {
               loader: MiniCssExtractPlugin.loader,
               options:{
-                hmr: devMode ? true : false
+                hmr: mode === 'development' ? true : false
               }
             },
             {
@@ -119,7 +130,7 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
                 modules: {
                   namedExport: true,
                   auto: true,
-                  localIdentName: '[local]'
+                  localIdentName: mode === 'development' ? '[local]' : '[name]__[local]___[hash:base64:5]'
                 }
   
               }
@@ -135,8 +146,8 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: devMode ? '[name].css' : '[name].[hash].css',
-        chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+        filename: mode === 'development' ? '[name].css' : '[name].[hash].css',
+        chunkFilename: mode === 'development' ? '[id].css' : '[id].[hash].css',
       }),
     ],
   });
@@ -196,7 +207,7 @@ exports.devServer = () => ({
     watch: true,
     plugins: [
       new WebpackPluginServe({
-        port: process.env.PORT || 8081,
+        port: process.env.PORT || 8082,
         static: path.resolve(__dirname, "../dist"),
         liveReload: true,
         waitForBuild: true,
@@ -227,8 +238,13 @@ exports.devServer = () => ({
   });
 
   exports.copyFromStaticToDist = () => ({
-    module: {},
     plugins: [
       new CopyWebpackPlugin( { patterns:[{from: 'src/static', to: 'static'}]} ),
+    ],
+  })
+
+  exports.visualizer = () => ({
+    plugins: [
+      new Visualizer({ filename: './statistics.html' })
     ],
   })
