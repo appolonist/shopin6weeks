@@ -1,10 +1,12 @@
 require('rootpath');
 const express = require('express');
 const app = express();
+const helmet = require('helmet')
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('./helpers/jwt');
-
+const errorHandler = require('./helpers/error-handler');
+app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -14,6 +16,9 @@ app.use(jwt());
 
 // api routes
 app.use('/users', require('./users/user.controller'));
+
+// global error handler
+app.use(errorHandler);
 
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 3000;
 const server = app.listen(port, function () {
