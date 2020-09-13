@@ -135,9 +135,9 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
   
               }
           
-          }
-             //'postcss-loader',
-            //'sass-loader',
+          },
+            // 'postcss-loader',
+           // 'sass-loader',
           ],
         },
       ],
@@ -194,12 +194,14 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
           exclude: /node_modules/,
           use: {
             loader: "babel-loader",
-           // options: {
-            //  presets: ["@babel/preset-env", "@babel/preset-react"]
-            //}
+            options: {
+              presets: ["@babel/preset-env", "@babel/preset-react"]
+            }
+
           }
         },
       ],
+      
     },
   });
 

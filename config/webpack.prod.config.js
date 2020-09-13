@@ -13,12 +13,12 @@ const prodConfiguration = (mode) => {
       mode
     },
     parts.minifyJavaScript(),
-     parts.extractCSS( mode ),
      parts.minifyCSS({
         options: {
           preset: ["default"],
         },
       }),
+      parts.extractCSS( "production" ),
     //parts.eliminateUnusedCSS(), // uncoment for bootstrap, tailwindcss or other framework
     parts.generateSourceMaps({ type: "source-map" }),
     parts.attachRevision(),

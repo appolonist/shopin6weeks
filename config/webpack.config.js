@@ -16,7 +16,7 @@ const developmentConfig = (mode) => {
     mode
   },
   parts.devServer(),
-  parts.extractCSS(mode)
+  parts.extractCSS("development")
  
 ])};
 
@@ -32,7 +32,7 @@ const getConfig = (mode) => {
       template: path.join(__dirname, "../src/index.html")
     }),
   ];
-  const config = mode === "production" ? productionConfig(mode): developmentConfig;
+  const config = mode === "production" ? productionConfig(mode): developmentConfig(mode);
 
   return merge([commonConfig, config].concat(pages));
 };

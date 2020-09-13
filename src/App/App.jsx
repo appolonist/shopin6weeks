@@ -4,6 +4,7 @@ import path from 'path';
 import { ImgComponent } from '../ImgComponent';
 import img from './img.png';
 import './style.css';
+
 export const App = () => {
 
     return (
@@ -13,4 +14,4 @@ export const App = () => {
     <img src="../static/img/clound.png"/>
     </>
     )
-}
+};
