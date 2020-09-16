@@ -1,10 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './style.css';
-import App from "../App";
+import {App} from "../App"
 
-
-export const Navbar = () => {
+function Navbar() {
     
        return ( 
 
@@ -17,3 +16,5 @@ export const Navbar = () => {
         
        )
 };
+
+export {Navbar};

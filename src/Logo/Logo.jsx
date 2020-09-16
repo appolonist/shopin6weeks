@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-export const Logo = () => {
+function Logo() {
     
        return( 
 
@@ -11,3 +11,5 @@ export const Logo = () => {
         
         )
 };
+
+export {Logo};

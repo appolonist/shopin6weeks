@@ -1,17 +1,35 @@
-import React from 'react';
-import { Header } from '../Header';
-import path from 'path';
-import { ImgComponent } from '../ImgComponent';
-import img from './img.png';
-import './style.css';
+import React, { useEffect } from 'react';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-export const App = () => {
+import { history } from '../_helpers';
+import { alertActions } from '../_actions';
+import { PrivateRoute } from '../_components';
+
+import { Header } from '../Header';
+
+
+function App() {
+
+    const alert = useSelector(state => state.alert);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        history.listen((location, action) => {
+            // clear alert on location change
+            dispatch(alertActions.clear());
+        });
+    }, []);
 
     return (
-    <>
-    <Header />
-    <ImgComponent  src={img} alt={'tryIT'} />
-    <img src="../static/img/clound.png"/>
-    </>
+        
+        <div>
+        {alert.message &&
+            <div className={`alert ${alert.type}`}>{alert.message}</div>
+        }
+        <Header />
+        </div>
     )
 };
+
+export {App}

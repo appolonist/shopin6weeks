@@ -8,6 +8,9 @@ const commonConfig = merge([
       output: {
         path: path.resolve(__dirname, "../dist"),
       },
+      resolve: {
+        extensions: ['.js', '.jsx']
+    },
       
     },
     parts.clean(),

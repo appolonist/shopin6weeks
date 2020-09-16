@@ -3,7 +3,7 @@ import { Logo } from '../Logo';
 import { Navbar } from '../Navbar';
 import './style.css';
 
-export const Header = () => {
+function Header() {
     
        return(
            <header>
@@ -13,3 +13,4 @@ export const Header = () => {
         )
 };
 
+export {Header};
