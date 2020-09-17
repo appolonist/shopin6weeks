@@ -6,7 +6,10 @@ const commonConfig = merge([
     {
       entry: ['@babel/polyfill', APP_DIR],
       output: {
-        path: path.resolve(__dirname, "../dist"),
+        path: path.resolve(__dirname,"..", 'dist'),
+        filename: '[name].[hash:8].js',
+        sourceMapFilename: '[name].[hash:8].map',
+        chunkFilename: '[id].[hash:8].js'
       },
       resolve: {
         extensions: ['.js', '.jsx']

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import React, { useEffect, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { history } from '../_helpers';
@@ -7,7 +7,6 @@ import { alertActions } from '../_actions';
 import { PrivateRoute } from '../_components';
 
 import { Header } from '../Header';
-
 
 function App() {
 
@@ -24,12 +23,14 @@ function App() {
     return (
         
         <div>
+            {"loplllo"}
         {alert.message &&
             <div className={`alert ${alert.type}`}>{alert.message}</div>
         }
-        <Header />
+         <Header /> 
+           
         </div>
-    )
+    );
 };
 
 export {App}

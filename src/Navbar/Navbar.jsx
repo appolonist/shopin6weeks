@@ -10,7 +10,6 @@ function Navbar() {
            <nav>
             <Router>
                 <Link to="/">Home</Link>
-                <Route path="/" component={App} />
             </Router>
             </nav>
         

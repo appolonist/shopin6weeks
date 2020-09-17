@@ -7,10 +7,10 @@ function Header() {
     
        return(
            <header>
-               <Logo />
-               <Navbar />
+            <Logo />
+            <Navbar />
            </header>       
         )
-};
+}
 
 export {Header};
