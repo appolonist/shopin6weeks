@@ -6,7 +6,9 @@ import { history } from '../_helpers';
 import { alertActions } from '../_actions';
 import { PrivateRoute } from '../_components';
 
-import { Header } from '../Header';
+import { HomePage } from '../HomePage';
+import { LoginPage } from '../LoginPage';
+import { RegisterPage } from '../RegisterPage';
 
 function App() {
 
@@ -21,15 +23,19 @@ function App() {
     }, []);
 
     return (
-        
-        <div>
-            {"loplllo"}
+        <>
         {alert.message &&
             <div className={`alert ${alert.type}`}>{alert.message}</div>
         }
-         <Header /> 
-           
-        </div>
+        <Router history={history}>
+            <Switch>
+                <PrivateRoute exact path="/" component={HomePage} />
+                <Route path="/login" component={LoginPage} />
+                <Route path="/register" component={RegisterPage} />
+                <Redirect from="*" to="/" />
+            </Switch>
+        </Router>
+        </>
     );
 };
 
