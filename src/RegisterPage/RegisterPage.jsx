@@ -35,7 +35,7 @@ function RegisterPage() {
     }
 
     return (
-        <>
+        <div className="col-lg-8 offset-lg-2">
             <h2>Register</h2>
             <form name="form" onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -74,7 +74,7 @@ function RegisterPage() {
                     <Link to="/login" className="btn btn-link">Cancel</Link>
                 </div>
             </form>
-        </>
+        </div>
     );
 }
 

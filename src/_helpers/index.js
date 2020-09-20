@@ -1,3 +1,3 @@
-export {store} from './store';
-export {authHeader} from './auth-header';
-export {history} from './history';
+export * from './history';
+export * from './store';
+export * from './auth-header';

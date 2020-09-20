@@ -214,7 +214,8 @@ exports.devServer = () => ({
         liveReload: true,
         waitForBuild: true,
         open: true,
-        hmr: true
+        hmr: true,
+        historyFallback: true
       }),
     ],
   });
