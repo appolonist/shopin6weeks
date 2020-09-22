@@ -25,7 +25,7 @@ const getConfig = (mode) => {
     parts.page({
       title: "Appolonist Shop",
       entry: {
-        app: path.join(__dirname, "..", "src", "index.jsx"),
+        app: path.join(__dirname, "..", "src", "index.js"),
       },
       chunks: ["app", "runtime", "vendor"],
       mode,
