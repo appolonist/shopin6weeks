@@ -206,7 +206,7 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
   });
 
 exports.devServer = () => ({
-    watch: true,
+ watch: true,
     plugins: [
       new WebpackPluginServe({
         port: process.env.PORT || 8083,
@@ -216,7 +216,7 @@ exports.devServer = () => ({
         open: true,
         hmr: true
       }),
-    ],
+    ]
   });
   
   exports.loadImages = ({ include, exclude, options } = {}) => ({

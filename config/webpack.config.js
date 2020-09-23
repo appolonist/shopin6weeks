@@ -10,13 +10,23 @@ const productionConfig = require('./webpack.prod.config');
 const developmentConfig = (mode) => { 
   return merge([
   {
-    output: {
-      filename: '[name].js',
+    context: __dirname,
+    entry: ['@babel/polyfill','../src/index.js'],
+    mode,
+    devServer: {
+      contentBase: path.resolve(__dirname,'..', 'dist'),
+      compress: true,
+      port: 9000,
+      open: true,
+      historyApiFallback: true,
+      hot: true,
+      lazy: true,
+      liveReload: true
     },
-    mode
   },
-  parts.devServer(),
-  parts.extractCSS("development")
+  //parts.devServer(),
+  parts.extractCSS("development"),,
+  parts.loadJavaScript()
  
 ])};
 
