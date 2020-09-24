@@ -7,24 +7,13 @@ const commonConfig = require('./webpack.base.config');
 
 const productionConfig = require('./webpack.prod.config');
 
-const developmentConfig = (mode) => { 
+const developmentConfig = () => { 
   return merge([
-  {
-    context: __dirname,
-    entry: ['@babel/polyfill','../src/index.js'],
-    mode,
-    devServer: {
-      contentBase: path.resolve(__dirname,'..', 'dist'),
-      compress: true,
-      port: 9000,
-      open: true,
-      historyApiFallback: true,
-      hot: true,
-      lazy: true,
-      liveReload: true
-    },
+  { 
+    output: "../dist",
+    mode 
   },
-  //parts.devServer(),
+  parts.devServer(),
   parts.extractCSS("development"),,
   parts.loadJavaScript()
  
@@ -35,16 +24,16 @@ const getConfig = (mode) => {
     parts.page({
       title: "Appolonist Shop",
       entry: {
-        app: path.join(__dirname, "..", "src", "index.js"),
+        app: path.resolve(__dirname, '../src/index.js'),
       },
       chunks: ["app", "runtime", "vendor"],
       mode,
-      template: path.join(__dirname, "../src/index.html")
+      template: path.resolve(__dirname, "../src/index.html")
     }),
   ];
-  const config = mode === "production" ? productionConfig(mode): developmentConfig(mode);
+  const config = mode === "production" ? productionConfig: developmentConfig;
 
-  return merge([commonConfig, config].concat(pages));
+  return merge([commonConfig, config, {mode}].concat(pages));
 };
 
 module.exports = getConfig(mode);

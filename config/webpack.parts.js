@@ -209,12 +209,12 @@ exports.devServer = () => ({
  watch: true,
     plugins: [
       new WebpackPluginServe({
-        port: process.env.PORT || 8083,
-        static: path.join(__dirname, "../dist"),
+        host: "localhost",
+        port: process.env.PORT || 8080,
+        static: "../dist",
+        open: true,
         liveReload: true,
         waitForBuild: true,
-        open: true,
-        hmr: true
       }),
     ]
   });

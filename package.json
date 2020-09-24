@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "webpack-dev-server --mode=development",
+    "start": "wp --config config/webpack.config.js --mode development",
     "prebuild": "wp --config config/webpack.config.js --mode production",
     "build": "node server"
   },
