@@ -6,14 +6,14 @@ const schema = new Schema ({
     hash: { type: String, required: true},
     firstName: { type: String, required: true},
     lastName: { type: String, required: true},
-    createdDate: {type: Date, default: Date.now() }
+    createdDate: {type: Date, default: Date.now }
 });
 
 schema.set('toJSON', {
     virtuals: true,
     versionKey: false,
     transform: function (doc, ret) {
-        delete ret.id;
+        delete ret._id;
         delete ret.hash;
     }
 })

@@ -6,11 +6,13 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('./helpers/jwt');
 const errorHandler = require('./helpers/error-handler');
+const history = require('connect-history-api-fallback');
+
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
-const history = require('connect-history-api-fallback');
+
 // use JWT auth to secure the api
 app.use(jwt());
 
