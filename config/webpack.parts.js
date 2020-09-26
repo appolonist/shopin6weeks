@@ -9,164 +9,164 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
-const CopyWebpackPlugin = require('copy-webpack-plugin'); 
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const APP_SOURCE = path.resolve(__dirname, "../src");
 const ALL_FILES = glob.sync(path.resolve(__dirname, "../src/*.js"));
 
-exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
-    entry:
-      mode === "development"
-        ? addEntryToAll(entry, "webpack-plugin-serve/client")
-        : entry,
-    plugins: [
-      new HtmlWebpackPlugin({
-        template,
-        chunks,
-        title,
-        minify: {
-          collapseWhitespace: true
-        }
-      })
-    ],
+exports.page = ({ path = "", template, title, entry, chunks, mode } = {}) => ({
+  entry:
+    mode === "development"
+      ? addEntryToAll(entry, "webpack-plugin-serve/client")
+      : entry,
+  plugins: [
+    new HtmlWebpackPlugin({
+      template,
+      chunks,
+      title,
+      minify: {
+        collapseWhitespace: true
+      }
+    })
+  ],
+});
+
+function addEntryToAll(entries, entry) {
+  const ret = {};
+
+  Object.keys(entries).forEach((key) => {
+    const e = entries[key];
+
+    ret[key] = (Array.isArray(e) ? e : [e]).concat(entry);
   });
 
-  function addEntryToAll(entries, entry) {
-    const ret = {};
-  
-    Object.keys(entries).forEach((key) => {
-      const e = entries[key];
-  
-      ret[key] = (Array.isArray(e) ? e : [e]).concat(entry);
-    });
-  
-    return ret;
+  return ret;
+}
+
+exports.setFreeVariable = (key, value) => {
+  const env = {};
+  env[key] = JSON.stringify(value);
+
+  return {
+    plugins: [new webpack.DefinePlugin(env)],
   };
-  
-  exports.setFreeVariable = (key, value) => {
-    const env = {};
-    env[key] = JSON.stringify(value);
-  
-    return {
-      plugins: [new webpack.DefinePlugin(env)],
-    };
-  };
+};
 
-  exports.minifyCSS = ({ options }) => ({
-    plugins: [
-      new OptimizeCSSAssetsPlugin({
-        cssProcessor: cssnano,
-        cssProcessorOptions: options,
-        canPrint: false,
-      }),
-    ],
-  });
+exports.minifyCSS = ({ options }) => ({
+  plugins: [
+    new OptimizeCSSAssetsPlugin({
+      cssProcessor: cssnano,
+      cssProcessorOptions: options,
+      canPrint: false,
+    }),
+  ],
+});
 
-  exports.attachRevision = () => ({
-    plugins: [
-      new webpack.BannerPlugin({
-        banner: new GitRevisionPlugin().version(),
-      }),
-    ],
-  });
-  
-  exports.clean = () => ({
-    plugins: [new CleanWebpackPlugin()],
-  });
+exports.attachRevision = () => ({
+  plugins: [
+    new webpack.BannerPlugin({
+      banner: new GitRevisionPlugin().version(),
+    }),
+  ],
+});
 
-  exports.eliminateUnusedCSS = () => ({
-    plugins: [
-      new PurgeCSSPlugin({
-        whitelistPatterns: [],
-        paths: ALL_FILES, 
-        extractors: [
-          {
-            extractor: (content) =>
-              content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [],
-            extensions: ["html"],
-          },
-        ],
-      }),
-    ],
-  });
+exports.clean = () => ({
+  plugins: [new CleanWebpackPlugin()],
+});
 
-  exports.minifyJavaScript = () => ({
-
-    optimization: {
-      runtimeChunk: 'single',
-      splitChunks: {
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all'
-          }
-        }
-      },
-      minimizer: [new TerserPlugin()],
-    },   
-  });
-
-  exports.extractCSS = (mode) => ({
-    module: {
-      rules: [
+exports.eliminateUnusedCSS = () => ({
+  plugins: [
+    new PurgeCSSPlugin({
+      whitelistPatterns: [],
+      paths: ALL_FILES,
+      extractors: [
         {
-          test: /\.(sa|sc|c)ss$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options:{
-                hmr: mode === 'development' ? true : false
-              }
-            },
-            {
-              loader:'css-loader',
-              options: {
-                //mode: 'local',
-                esModule: true,
-                import: true,
-                modules: {
-                  namedExport: true,
-                  auto: true,
-                  localIdentName: mode === 'development' ? '[local]' : '[name]__[local]___[hash:base64:5]'
-                }
-  
-              }
-          
-          },
-            // 'postcss-loader',
-           // 'sass-loader',
-          ],
-        },
+          extractor: (content) =>
+            content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [],
+          extensions: ["html"],
+        }
       ],
-    },
-    plugins: [
-      new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // both options are optional
-        filename: mode === 'development' ? '[name].css' : '[name].[hash].css',
-        chunkFilename: mode === 'development' ? '[id].css' : '[id].[hash].css',
-      }),
-    ],
-  });
-  
-  exports.autoprefix = () => ({
-    loader: "postcss-loader",
-    options: {
-      plugins: [require("autoprefixer")()],
-    },
-  });
+    }),
+  ],
+});
 
-  exports.loadCSS = () => ({
-    module: {
-      rules: [
-        {
-          test: /\.css$/,
-          use: ['style-loader', 
+exports.minifyJavaScript = () => ({
+
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    },
+    minimizer: [new TerserPlugin()],
+  },
+});
+
+exports.extractCSS = (mode) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
           {
-            loader:'css-loader',
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: mode === 'development' ? true : false
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              //mode: 'local',
+              esModule: true,
+              import: true,
+              modules: {
+                namedExport: true,
+                auto: true,
+                localIdentName: mode === 'development' ? '[local]' : '[name]__[local]___[hash:base64:5]'
+              }
+
+            }
+
+          },
+          // 'postcss-loader',
+          // 'sass-loader',
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: mode === 'development' ? '[name].css' : '[name].[hash].css',
+      chunkFilename: mode === 'development' ? '[id].css' : '[id].[hash].css',
+    }),
+  ],
+});
+
+exports.autoprefix = () => ({
+  loader: "postcss-loader",
+  options: {
+    plugins: [require("autoprefixer")()],
+  },
+});
+
+exports.loadCSS = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader',
+          {
+            loader: 'css-loader',
             options: {
               //mode: 'local',
               esModule: true,
@@ -178,76 +178,74 @@ exports.page = ({ path = "", template, title, entry, chunks, mode} = {}) => ({
               }
 
             }
-        
-        }],
-        },
-      ],
-    },
-  });
 
-  exports.loadJavaScript = () => ({
-    module: {
-      rules: [
-        {
-          test: /\.(js|jsx)$/,
-          include: APP_SOURCE,
-          exclude: /node_modules/,
-          use: {
-            loader: "babel-loader",
-            options: {
-              presets: ["@babel/preset-env", "@babel/preset-react"]
-            }
+          }],
+      },
+    ],
+  },
+});
 
+exports.loadJavaScript = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        include: APP_SOURCE,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"]
           }
-        },
-      ],
-      
-    },
-  });
+
+        }
+      },
+    ],
+
+  },
+});
 
 exports.devServer = () => ({
- watch: true,
-    plugins: [
-      new WebpackPluginServe({
-        host: "localhost",
-        port: process.env.PORT || 8080,
-        static: "../dist",
-        open: true,
-        liveReload: true,
-        waitForBuild: true,
-        historyFallback: true
-      }),
-    ]
-  });
-  
-  exports.loadImages = ({ include, exclude, options } = {}) => ({
-    module: {
-      rules: [
-        {
-          test: /\.(png|jpg)$/,
-          include,
-          exclude,
-          use: {
-            loader: "url-loader",
-            options,
-          },
+  watch: true,
+  plugins: [
+    new WebpackPluginServe({
+      port: process.env.PORT || 8087,
+      static: "../dist",
+      open: true,
+      liveReload: true,
+      waitForBuild: true,
+    }),
+  ]
+});
+
+exports.loadImages = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg)$/,
+        include,
+        exclude,
+        use: {
+          loader: "url-loader",
+          options,
         },
-      ],
-    },
-  });
-
-  exports.generateSourceMaps = ({ type }) => ({
-    devtool: type,
-  });
-
-  exports.copyFromStaticToDist = () => ({
-    plugins: [
-      new CopyWebpackPlugin( { patterns:[{from: 'src/static', to: 'static'}]} ),
+      },
     ],
-  })
+  },
+});
 
-  exports.visualizer = () => ({
-    plugins: [
-      new Visualizer({ filename: './statistics.html' })
-    ],
-  })
+exports.generateSourceMaps = ({ type }) => ({
+  devtool: type,
+});
+
+exports.copyFromStaticToDist = () => ({
+  plugins: [
+    new CopyWebpackPlugin({ patterns: [{ from: 'src/static', to: 'static' }] }),
+  ],
+})
+
+exports.visualizer = () => ({
+  plugins: [
+    new Visualizer({ filename: './statistics.html' })
+  ],
+})

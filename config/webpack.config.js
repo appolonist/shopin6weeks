@@ -7,33 +7,26 @@ const commonConfig = require('./webpack.base.config');
 
 const productionConfig = require('./webpack.prod.config');
 
-const developmentConfig = () => { 
-  return merge([
-  { 
-    output: "../dist",
-    mode 
-  },
+const developmentConfig = merge([
   parts.devServer(),
-  parts.extractCSS("development"),,
-  parts.loadJavaScript()
- 
-])};
+  parts.extractCSS("development")
+]);
 
 const getConfig = (mode) => {
   const pages = [
     parts.page({
       title: "Appolonist Shop",
       entry: {
-        app: path.resolve(__dirname, '../src/index.js'),
+        app: path.resolve(__dirname, '..', 'src', 'index.js'),
       },
       chunks: ["app", "runtime", "vendor"],
       mode,
-      template: path.resolve(__dirname, "../src/index.html")
+      template: path.resolve(__dirname, "..", "src", "index.html")
     }),
   ];
-  const config = mode === "production" ? productionConfig: developmentConfig;
+  const config = mode === "production" ? productionConfig : developmentConfig;
 
-  return merge([commonConfig, config, {mode}].concat(pages));
+  return merge([commonConfig, config, { mode }].concat(pages));
 };
 
 module.exports = getConfig(mode);
