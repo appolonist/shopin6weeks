@@ -1,5 +1,5 @@
-import React, { useEffect, Suspense } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { history } from '../_helpers';
@@ -23,7 +23,7 @@ function App() {
     }, []);
 
     return (
-        <>
+        <div>
         {alert.message &&
             <div className={`alert ${alert.type}`}>{alert.message}</div>
         }
@@ -35,7 +35,8 @@ function App() {
                 <Redirect from="*" to="/" />
             </Switch>
         </Router>
-        </>
+        </div>
+        
     );
 };
 
