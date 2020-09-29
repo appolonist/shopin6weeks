@@ -18,6 +18,10 @@ function HomePage() {
     }
 
     return (
+        <>
+        <nav className="">
+            Appolonist
+        </nav>
         <div className="col-lg-8 offset-lg-2">
             <h1>Hi {user.firstName}!</h1>
             <p>You're logged in with React Hooks!!</p>
@@ -42,6 +46,7 @@ function HomePage() {
                 <Link to="/login">Logout</Link>
             </p>
         </div>
+        </>
     );
 }
 

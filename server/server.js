@@ -6,7 +6,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('./helpers/jwt');
 const errorHandler = require('./helpers/error-handler');
-
+const history = require('connect-history-api-fallback');
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -17,6 +17,9 @@ app.use(jwt());
 
 // api routes
 app.use('/users', require('./users/user.controller'));
+
+//HTML5 History API
+app.use(history());
 
 // global error handler
 app.use(errorHandler);
