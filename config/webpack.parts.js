@@ -15,6 +15,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const APP_SOURCE = path.resolve(__dirname, "../src");
 const ALL_FILES = glob.sync(path.resolve(__dirname, "../src/*.js"));
+const outputPath = path.resolve(process.cwd(), '../dist');
 
 exports.page = ({ path = "", template, title, entry, chunks, mode } = {}) => ({
   entry:
@@ -163,26 +164,26 @@ exports.loadCSS = () => ({
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ['style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              //mode: 'local',
-              esModule: true,
-              import: true,
-              modules: {
-                namedExport: true,
-                auto: true,
-                localIdentName: '[local]'
-              }
-
+        test: /\.(css|scss)$/,
+        use: [{
+          loader: 'style-loader', // inject CSS to page
+        }, {
+          loader: 'css-loader', // translates CSS into CommonJS modules
+        }, {
+          loader: 'postcss-loader', // Run post css actions
+          options: {
+            plugins: function () { // post css plugins, can be exported to postcss.config.js
+              return [
+                require('precss'),
+                require('autoprefixer')
+              ];
             }
-
-          }],
-      },
-    ],
+          }
+        }, {
+          loader: 'sass-loader' // compiles Sass to CSS
+        }]
   },
+]}
 });
 
 exports.loadJavaScript = () => ({
@@ -206,18 +207,22 @@ exports.loadJavaScript = () => ({
 });
 
 exports.devServer = () => ({
-  watch: true,
+  output:{
+    path: outputPath
+  },
+  
   plugins: [
     new WebpackPluginServe({
       port: process.env.PORT || 8087,
-      static: path.resolve(__dirname, "../dist"),
+      static: outputPath,
       open: true,
       liveReload: true,
       waitForBuild: true,
       hmr: true,
       historyFallback: true
     }),
-  ]
+  ],
+  watch: true,
 });
 
 exports.loadImages = ({ include, exclude, options } = {}) => ({

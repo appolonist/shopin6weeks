@@ -10,6 +10,8 @@ import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 
+import "./style.css";
+
 function App() {
 
     const alert = useSelector(state => state.alert);
@@ -23,7 +25,7 @@ function App() {
     }, []);
 
     return (
-        <div>
+        <div className="container">
         {alert.message &&
             <div className={`alert ${alert.type}`}>{alert.message}</div>
         }
