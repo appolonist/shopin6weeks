@@ -15,7 +15,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const APP_SOURCE = path.resolve(__dirname, "../src");
 const ALL_FILES = glob.sync(path.resolve(__dirname, "../src/*.js"));
-const outputPath = path.resolve(process.cwd(), '../dist');
+const outputPath = path.join(process.cwd(), '/dist');
 
 exports.page = ({ path = "", template, title, entry, chunks, mode } = {}) => ({
   entry:
@@ -213,7 +213,7 @@ exports.devServer = () => ({
   
   plugins: [
     new WebpackPluginServe({
-      port: process.env.PORT || 8087,
+      port: process.env.PORT || 8086,
       static: outputPath,
       open: true,
       liveReload: true,

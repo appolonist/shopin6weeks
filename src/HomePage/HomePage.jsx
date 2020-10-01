@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { userActions } from '../_actions';
 import styles from './style.css';
+
 function HomePage() {
     const users = useSelector(state => state.users);
     const user = useSelector(state => state.authentication.user);
