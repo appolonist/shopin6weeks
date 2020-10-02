@@ -213,7 +213,7 @@ exports.devServer = () => ({
   
   plugins: [
     new WebpackPluginServe({
-      port: process.env.PORT || 8086,
+      port: process.env.PORT || 8087,
       static: outputPath,
       open: true,
       liveReload: true,

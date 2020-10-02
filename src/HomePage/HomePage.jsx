@@ -24,7 +24,7 @@ function HomePage() {
             <div className="logo">Appolonist</div>
         </nav>
         <div className="col-lg-8 offset-lg-2">
-            <h1>Hi{user.firstName}!</h1>
+            <h1>Hi {user.firstName}!</h1>
             <p>You're logged in with React Hooks!!</p>
             <h3>All registered users:</h3>
             {users.loading && <em>Loading users...</em>}
