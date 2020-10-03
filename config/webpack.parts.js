@@ -219,7 +219,7 @@ exports.devServer = () => ({
       port: process.env.PORT || 8087,
       static: outputPath,
       open: true,
-      //liveReload: true,
+      //liveReload: true, // this kill hmr!
       waitForBuild: true,
       hmr: true,
       historyFallback: true
