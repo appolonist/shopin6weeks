@@ -213,10 +213,13 @@ exports.devServer = () => ({
   
   plugins: [
     new WebpackPluginServe({
+      client: {
+        retry: true
+      },
       port: process.env.PORT || 8087,
       static: outputPath,
       open: true,
-      liveReload: true,
+      //liveReload: true,
       waitForBuild: true,
       hmr: true,
       historyFallback: true

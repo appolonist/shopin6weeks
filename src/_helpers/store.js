@@ -5,10 +5,20 @@ import rootReducer from '../_reducers';
 
 const loggerMiddleware = createLogger();
 
-export const store = createStore(
-    rootReducer,
-    applyMiddleware(
-        thunkMiddleware,
-        loggerMiddleware
-    )
-);
+ function store() { 
+    const store = createStore(
+        rootReducer,
+        applyMiddleware(
+            thunkMiddleware,
+            loggerMiddleware
+        )      
+    );
+    if (module.hot) {
+        module.hot.accept('../_reducers', () => {
+            store.replaceReducer(rootReducer);
+        });
+    };
+    return store;
+};
+
+export default store();

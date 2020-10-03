@@ -8,6 +8,8 @@ import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 
+import { hot } from 'react-hot-loader';
+
 import "./style.css";
 
 function App() {
@@ -40,4 +42,4 @@ function App() {
     );
 };
 
-export { App };
+export default hot(module)(App);

@@ -4,6 +4,7 @@ const { mode } = require("webpack-nano/argv");
 const commonConfig = merge([
   {
     resolve: {
+      alias: { 'react-dom': '@hot-loader/react-dom' },
       extensions: ['.js', '.jsx']
     },
     mode

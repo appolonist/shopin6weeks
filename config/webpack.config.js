@@ -8,6 +8,12 @@ const commonConfig = require('./webpack.base.config');
 const productionConfig = require('./webpack.prod.config');
 
 const developmentConfig = merge([
+  {
+    output: {
+      path: path.join(process.cwd(), "dist"),
+      filename: '[name].bundle.js'
+    },
+  },
   parts.devServer(),
   parts.extractCSS("development")
 ]);
