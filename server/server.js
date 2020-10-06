@@ -17,6 +17,7 @@ app.use(jwt());
 
 // api routes
 app.use('/users', require('./users/user.controller'));
+app.use('/products', require('./products/product.controller'));
 
 //HTML5 History API
 app.use(history());
