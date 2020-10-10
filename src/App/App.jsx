@@ -7,7 +7,7 @@ import { PrivateRoute } from '../_components';
 import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
-
+import { CreateProductPage } from '../CreateProductPage';
 import { hot } from 'react-hot-loader';
 
 import "./style.css";
@@ -34,6 +34,7 @@ function App() {
                 <PrivateRoute exact path="/" component={HomePage} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
+                <Route path="/products/create" component={CreateProductPage} />
                 <Redirect from="*" to="/" />
             </Switch>
         </Router>

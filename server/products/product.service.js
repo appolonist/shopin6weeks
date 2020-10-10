@@ -27,7 +27,7 @@ async function create(productParam) {
     const product = new Product(productParam);
 
 
-    // save user
+    // save product
     await product.save();
 }
 

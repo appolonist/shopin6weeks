@@ -20,7 +20,7 @@ function create(product) {
             .then(
                 product => { 
                     dispatch(success());
-                    history.push('/products/');
+                    history.push('/products/create/true');
                     dispatch(alertActions.success('Product is added.'));
                 },
                 error => {
@@ -30,8 +30,8 @@ function create(product) {
             );
     };
 
-    function request(user) { return { type: productConstants.CREATE_REQUEST, user } }
-    function success(user) { return { type: productConstants.CREATE_SUCCESS, user } }
+    function request(product) { return { type: productConstants.CREATE_REQUEST, product } }
+    function success(product) { return { type: productConstants.CREATE_SUCCESS, product } }
     function failure(error) { return { type: productConstants.CREATE_FAILURE, error } }
 }
 
@@ -47,7 +47,7 @@ function getAll() {
     };
 
     function request() { return { type: productConstants.GETALL_REQUEST } }
-    function success(products) { return { type: productConstants.GETALL_SUCCESS, users } }
+    function success(products) { return { type: productConstants.GETALL_SUCCESS, products } }
     function failure(error) { return { type: productConstants.GETALL_FAILURE, error } }
 }
 

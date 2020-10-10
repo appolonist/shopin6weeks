@@ -1,7 +1,7 @@
 import config from '../../config/config.json';
 import { authHeader } from '../_helpers';
 
-export const userService = {
+export const productService = {
     create,
     getAll,
     getById,

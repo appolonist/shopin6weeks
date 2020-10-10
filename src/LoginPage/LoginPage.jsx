@@ -60,6 +60,7 @@ function LoginPage() {
                         Login
                     </button>
                     <Link to="/register" className="btn btn-link">Register</Link>
+                    <Link to="/products/create" className="btn btn-link">Create Product</Link>
                 </div>
             </form>
         </div>
