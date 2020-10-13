@@ -1,7 +1,8 @@
 require('rootpath');
 const express = require('express');
 const app = express();
-const helmet = require('helmet')
+const morgan = require('morgan');
+const helmet = require('helmet');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('./helpers/jwt');
@@ -14,7 +15,8 @@ app.use(cors());
 
 // use JWT auth to secure the api
 app.use(jwt());
-
+// use Morgan for logging purposes
+app.use(morgan('combined'))
 // api routes
 app.use('/users', require('./users/user.controller'));
 app.use('/products', require('./products/product.controller'));
