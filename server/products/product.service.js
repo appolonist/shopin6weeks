@@ -21,7 +21,7 @@ async function getById(id) {
 async function create(productParam) {
     // validate
     if (await Product.findOne({ productName: productParam.productName })) {
-        throw 'Username "' + productParam.productName + '" is already taken';
+        throw 'Product "' + productParam.productName + '"already exist';
     }
 
     const product = new Product(productParam);

@@ -21,19 +21,19 @@ function createProduct(req, res, next) {
 
 function getAll(req, res, next) {
     productService.getAll()
-        .then(users => res.json(users))
+        .then(products => res.json(products))
         .catch(err => next(err));
 }
 
 function getCurrent(req, res, next) {
-    productService.getById(req.user.sub)
-        .then(user => user ? res.json(user) : res.sendStatus(404))
+    productService.getById(req.product.sub)
+        .then(product => product ? res.json(product) : res.sendStatus(404))
         .catch(err => next(err));
 }
 
 function getById(req, res, next) {
     productService.getById(req.params.id)
-        .then(user => user ? res.json(user) : res.sendStatus(404))
+        .then(product => product ? res.json(product) : res.sendStatus(404))
         .catch(err => next(err));
 }
 
