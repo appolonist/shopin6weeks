@@ -64,7 +64,7 @@ function handleResponse(response) {
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
-                logout();
+                
                 location.reload(true);
                 console.log('After implement page for adding product go to product.service in frontend part and use history.push(/thatpage)')
             }

@@ -12,7 +12,8 @@ function jwt() {
             '/users/authenticate',
             '/users/register',
             '/products/create',
-            '/products'
+            '/products',
+            '/products/:id'
 
         ]
     });
