@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const jwt = require('./helpers/jwt');
 const errorHandler = require('./helpers/error-handler');
 const history = require('connect-history-api-fallback');
+const isAuth = require('./helpers/isAuth');
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
