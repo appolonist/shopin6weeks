@@ -8,11 +8,12 @@ var ImageSchema = new Schema({
         required: true
     },
     imageData: {
-        type: String,
+        contentType: String,
+        data: Buffer,
         required: true
     }
 });
 
-var Image = mongoose.model('Image', ImageSchema);
+const Image = mongoose.model('Image', ImageSchema);
 
 module.exports = Image;

@@ -41,7 +41,7 @@ async function update(id, productParam) {
     }
 
 
-    // copy userParam properties to user
+    // copy productParam properties to product
     Object.assign(product, productParam);
 
     await product.save();
