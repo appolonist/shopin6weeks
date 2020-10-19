@@ -1,3 +1,3 @@
 export * from './PrivateRoute';
-export * from './NavigationBar';
-export * from './TopBar';
+export * from './NavigationBarComponent/NavigationBar';
+export * from './TopBarComponent/TopBar';

@@ -10,7 +10,7 @@ import { RegisterPage } from '../RegisterPage';
 import { CreateProductPage } from '../CreateProductPage';
 import { hot } from 'react-hot-loader';
 
-import "./style.css";
+import style from "./style.css";
 
 function App() {
 
