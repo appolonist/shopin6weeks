@@ -5,12 +5,10 @@ var ImageSchema = new Schema({
     imageName: {
         type: String,
         default: "none",
-        required: true
     },
     imageData: {
         contentType: String,
         data: Buffer,
-        required: true
     }
 });
 

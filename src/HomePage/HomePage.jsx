@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { TopBar } from '../_components'
 import { NavigationBar } from '../_components';
 import { userActions } from '../_actions';
 import styles from './style.css';
@@ -20,6 +21,7 @@ function HomePage() {
 
     return (
         <>
+        <TopBar />
         <NavigationBar />
         <CreateProductPage />
         <div className="col-lg-8 offset-lg-2">

@@ -6,7 +6,7 @@ const isAuth = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (authHeader) {
-        const token = authHeader.split(' ')[1];
+        const token = authHeader.split(' ')[1]; // "Bearer [JWT_TOKEN]"  => [JWT_TOKEN]
 
         jwt.verify(token, accessTokenSecret, (err, user) => {
             if (err) {

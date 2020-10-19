@@ -5,6 +5,7 @@ const schema = new Schema ({
     productName: { type: String, unique: true, required: true},
     type: { type: String, required: true},
     price: { type: Number, required: true},
+    
     createdDate: {type: Date, default: Date.now }
 });
 
