@@ -20,9 +20,7 @@ li {
     height: 100%;
     border-right: 1px solid #ddd;
 }
-li:first-of-type{
-    border-left: 1px solid #ddd;
-}
+
 .btn-settings-panel {
     border: none;
     background-color: transparent;
@@ -44,7 +42,7 @@ li:first-of-type{
     box-shadow: 0 0 0 1px #ddd;
     margin: 0px 17px;
 }
-.link {
+a.link {
     text-decoration: none;
     line-height: 30px;
     color: #666;

@@ -2,6 +2,7 @@ import React from 'react';
 import style from './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
 
 function NavigationBar() {
 
@@ -14,7 +15,7 @@ return (
       </div>
       <nav>
         <ul class="tablist" role="tablist">
-          <li>
+         <li>
               <a id="women-products" class="women-tab" href="/products/women" role="tab" aria-label="Womens products">WOMEN</a>
           </li>
           <li>
@@ -33,8 +34,13 @@ return (
 
     </div>
    </div>
-   <nav>
-     cololo
+   <nav class="nav-bar">
+   <p class="nav-women">
+                <span><Link to="/products/women/dressess">Dressess</Link></span>
+                <span><Link to="/products/women/hoodies">Hoodies</Link></span>
+                <span><Link to="/products/women/t-shirts">T-shirts</Link></span>
+                <span><Link to="/products/women/jumperscardigans">Jumpers&Cardigans</Link></span>
+    </p>         
    </nav>
  </header>
 );
