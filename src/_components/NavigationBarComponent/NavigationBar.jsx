@@ -36,10 +36,10 @@ return (
    </div>
    <nav class="nav-bar">
    <p class="nav-women">
-                <span><Link to="/products/women/dressess">Dressess</Link></span>
-                <span><Link to="/products/women/hoodies">Hoodies</Link></span>
-                <span><Link to="/products/women/t-shirts">T-shirts</Link></span>
-                <span><Link to="/products/women/jumperscardigans">Jumpers&Cardigans</Link></span>
+                <li><Link to="/products/women/dressess">Dressess</Link></li>
+                <li><Link to="/products/women/hoodies">Hoodies</Link></li>
+                <li><Link to="/products/women/t-shirts">T-shirts</Link></li>
+                <li><Link to="/products/women/jumperscardigans">Jumpers&Cardigans</Link></li>
     </p>         
    </nav>
  </header>

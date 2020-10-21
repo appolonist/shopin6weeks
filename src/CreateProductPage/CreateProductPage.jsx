@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions } from '../_actions';
-
+import style from './style.css';
 function CreateProductPage() {
     const products = useSelector(state => state.products);
     const [productForm, setProduct] = useState({
@@ -37,12 +37,12 @@ function CreateProductPage() {
     }
 
     return (
-        <div className="col-lg-8 offset-lg-2">
+        <div className="col-lg-8 offset-lg-2 wrapper">
             <h2>Product List:</h2>
             {products.loading && <em>Loading products...</em>}
             {products.error && <span className="text-danger">ERROR: {products.error}</span>}
             {products.items &&
-                <ul>
+                <ul className="product-list">
                     {products.items.map((product, index) =>
                         <li key={product.id}>
                             {product.productName + '/n' + product.type}
@@ -55,6 +55,7 @@ function CreateProductPage() {
                     )}
                 </ul>
             }
+        <div className="create-product-list">
             <h2>Create Product</h2>
             <form name="form" onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -83,10 +84,11 @@ function CreateProductPage() {
                         {creating && <span className="spinner-border spinner-border-sm mr-1"></span>}
                         Create
                     </button>
-                    <Link to="/login" className="btn btn-link">Cancel</Link>
+                    <p className="create-product-link"><Link to="/login" className="btn btn-link">Cancel</Link></p>
                 </div>
             </form>
         </div>
+    </div>
     );
 }
 

@@ -6,3 +6,19 @@
     text-align: left;
     font-family: Arial;
 }
+ul.users-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.users-list > li {
+    border: none;
+    list-style-type: circle;
+}
+p.logout > a {
+    color: blue;
+}
+.wraper-users-list {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,20 @@
+.form-group:last-of-type {
+    display: flex;
+    flex-direction: row;
+}
+.create-product-link > a{
+    color: blue;
+}
+ul.product-list {
+    display: flex;
+    flex-direction: column;
+    float: left;
+}
+.create-product-list {
+    display: flex;
+    flex-direction: column;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}

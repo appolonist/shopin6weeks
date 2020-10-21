@@ -4,7 +4,7 @@ import style from './style.css';
 function TopBar() {
    function setLanguage() { console.log("Language setting button has been clicked") }
     return(
-        <div className="container">
+        <div>
             <ul className="settingsPanel">
                 <li>
                     <a className="link" href="/help">Help &amp; FAQs</a>

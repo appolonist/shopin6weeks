@@ -20,18 +20,17 @@ function HomePage() {
     }
 
     return (
-        <>
+        <div>
         <TopBar />
         <NavigationBar />
         <CreateProductPage />
-        <div className="col-lg-8 offset-lg-2">
+        <div className="col-lg-8 offset-lg-2 wraper-users-list">
             <h1>Hi {user.firstName}!</h1>
-            <p>You're logged in with React Hooks!!</p>
             <h3>All registered users:</h3>
             {users.loading && <em>Loading users...</em>}
             {users.error && <span className="text-danger">ERROR: {users.error}</span>}
             {users.items &&
-                <ul>
+                <ul className="users-list">
                     {users.items.map((user, index) =>
                         <li key={user.id}>
                             {user.firstName + ' ' + user.lastName}
@@ -44,11 +43,10 @@ function HomePage() {
                     )}
                 </ul>
             }
-            <p>
-                <Link to="/login">Logout</Link>
-            </p>
+                <p className="logout"><Link to="/login">Logout</Link></p>
+            
         </div>
-        </>
+    </div>
     );
 }
 
