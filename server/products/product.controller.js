@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const productService = require('./product.service');
-
+const multer = require('multer');
+const upload = multer({ dest: 'static/' })
 // routes
-router.post('/create', createProduct);
+router.post('/create', upload.single('img'), createProduct);
 router.get('/', getAll);
 router.get('/current', getCurrent);
 router.get('/:id', getById);
@@ -14,7 +15,8 @@ module.exports = router;
 
 
 function createProduct(req, res, next) {
-    productService.create(req.body)
+    console.log(JSON.stringify(req.body));
+    productService.create({...req.body, img: {data: req.file, contentType: 'image/png'}})
         .then(() => res.json({}))
         .catch(err => next(err));
 }

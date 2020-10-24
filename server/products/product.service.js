@@ -1,6 +1,6 @@
 const db = require('../helpers/db');
 const Product = db.Product;
-
+const fs = require('fs');
 module.exports = {
     getAll,
     getById,
@@ -25,7 +25,6 @@ async function create(productParam) {
     }
 
     const product = new Product(productParam);
-
 
     // save product
     await product.save();

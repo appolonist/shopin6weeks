@@ -8,18 +8,18 @@ function NavigationBar() {
 
 return (
  <header>
-   <div id="chrome-sticky-header" class="headerposition headerposition--unfixed">
-    <div class="top-header-wrapper">
-      <div class="top-header">
-        <a class="logo-header" href="/">Appolonist</a>
+   <div id="chrome-sticky-header" className="headerposition headerposition--unfixed">
+    <div className="top-header-wrapper">
+      <div className="top-header">
+        <a className="logo-header" href="/">Appolonist</a>
       </div>
       <nav>
-        <ul class="tablist" role="tablist">
+        <ul className="tablist" role="tablist">
          <li>
-              <a id="women-products" class="women-tab" href="/products/women" role="tab" aria-label="Womens products">WOMEN</a>
+              <a id="women-products" className="women-tab" href="/products/women" role="tab" aria-label="Womens products">WOMEN</a>
           </li>
           <li>
-              <a id="men-products" class="men-tab" href="/products/men" role="tab" aria-label="Mens products">MEN</a>
+              <a id="men-products" className="men-tab" href="/products/men" role="tab" aria-label="Mens products">MEN</a>
           </li>
         </ul>
         <ul className="user-list">
@@ -34,8 +34,8 @@ return (
 
     </div>
    </div>
-   <nav class="nav-bar">
-   <p class="nav-women">
+   <nav className="nav-bar">
+   <p className="nav-women">
                 <li><Link to="/products/women/dressess">Dressess</Link></li>
                 <li><Link to="/products/women/hoodies">Hoodies</Link></li>
                 <li><Link to="/products/women/t-shirts">T-shirts</Link></li>

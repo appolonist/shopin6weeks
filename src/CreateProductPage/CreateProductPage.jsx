@@ -9,6 +9,7 @@ function CreateProductPage() {
         productName: '',
         type: '',
         price: 0,
+        img: '',
         createdDate: Date.now()
     });
     const [created, setCreated] = useState(false);
@@ -26,12 +27,15 @@ function CreateProductPage() {
         const { name, value } = e.target;
         setProduct(productForm => ({ ...productForm, [name]: value }));
     }
+    function handleImgChange(e) {
+        setProduct({...productForm, img: event.target.files[0]});
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
-
+        
         setCreated(true);
-        if (productForm.productName && productForm.type && productForm.price) {
+        if (productForm.productName && productForm.type && productForm.price && productForm.img) {
             dispatch(productActions.create(productForm));
         }
     }
@@ -57,7 +61,7 @@ function CreateProductPage() {
             }
         <div className="create-product-list">
             <h2>Create Product</h2>
-            <form name="form" onSubmit={handleSubmit}>
+            <form action="/products/create" name="productForm" onSubmit={handleSubmit} method="post" encType="multipart/form-data">
                 <div className="form-group">
                     <label>Product Name</label>
                     <input type="text" name="productName" value={productForm.productName} onChange={handleChange} className={'form-control' + (created && !productForm.productName ? ' is-invalid' : '')} />
@@ -77,6 +81,13 @@ function CreateProductPage() {
                     <input type="text" name="price" value={productForm.price} onChange={handleChange} className={'form-control' + (created && !productForm.price ? ' is-invalid' : '')} />
                     {created && !productForm.price &&
                         <div className="invalid-feedback">Product price is required</div>
+                    }
+                </div>
+                <div className="form-group">
+                    <label>Product Image</label>
+                    <input type="file" name="img" onChange={handleImgChange} className={'form-control' + (created && !productForm.img ? ' is-invalid' : '')} />
+                    {created && !productForm.img &&
+                        <div className="invalid-feedback">Product imge is required</div>
                     }
                 </div>
                 <div className="form-group">

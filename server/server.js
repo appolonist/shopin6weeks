@@ -18,6 +18,7 @@ app.use(cors());
 app.use(jwt());
 // use Morgan for logging purposes
 app.use(morgan('combined'))
+
 // api routes
 app.use('/users', require('./users/user.controller'));
 app.use('/products', require('./products/product.controller'));
