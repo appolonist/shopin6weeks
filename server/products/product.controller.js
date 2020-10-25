@@ -15,8 +15,8 @@ module.exports = router;
 
 
 function createProduct(req, res, next) {
-    console.log(JSON.stringify(req.body));
-    productService.create({...req.body, img: {data: req.file, contentType: 'image/png'}})
+    
+    productService.create(req.body)
         .then(() => res.json({}))
         .catch(err => next(err));
 }

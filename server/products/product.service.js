@@ -1,6 +1,7 @@
 const db = require('../helpers/db');
 const Product = db.Product;
 const fs = require('fs');
+const path = require('path');
 module.exports = {
     getAll,
     getById,
@@ -23,8 +24,12 @@ async function create(productParam) {
     if (await Product.findOne({ productName: productParam.productName })) {
         throw 'Product "' + productParam.productName + '"already exist';
     }
-
-    const product = new Product(productParam);
+    const newProductParam = {...productParam, avatar: {
+        data: fs.readFileSync(path.resolve('file://../../../sklep.jpg')), 
+        contentType: 'image/jpeg'
+    }}
+    console.log("handle create service" + JSON.stringify(newProductParam));
+    const product = new Product(newProductParam);
 
     // save product
     await product.save();

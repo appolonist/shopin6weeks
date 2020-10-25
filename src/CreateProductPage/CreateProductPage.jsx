@@ -9,7 +9,7 @@ function CreateProductPage() {
         productName: '',
         type: '',
         price: 0,
-        img: '',
+        avatar: '',
         createdDate: Date.now()
     });
     const [created, setCreated] = useState(false);
@@ -27,15 +27,13 @@ function CreateProductPage() {
         const { name, value } = e.target;
         setProduct(productForm => ({ ...productForm, [name]: value }));
     }
-    function handleImgChange(e) {
-        setProduct({...productForm, img: event.target.files[0]});
-    }
 
     function handleSubmit(e) {
         e.preventDefault();
         
         setCreated(true);
-        if (productForm.productName && productForm.type && productForm.price && productForm.img) {
+        if (productForm.productName && productForm.type && productForm.price) {
+            console.log("Handle submitting " + JSON.stringify(productForm))
             dispatch(productActions.create(productForm));
         }
     }
@@ -47,21 +45,23 @@ function CreateProductPage() {
             {products.error && <span className="text-danger">ERROR: {products.error}</span>}
             {products.items &&
                 <ul className="product-list">
-                    {products.items.map((product, index) =>
+                    {products.items.map((product, index) => 
+                       
                         <li key={product.id}>
-                            {product.productName + '/n' + product.type}
+                            {product.productName + ' ' + product.type}
                             {
                                 product.deleting ? <em> - Deleting...</em>
                                 : product.deleteError ? <span className="text-danger"> - ERROR: {product.deleteError}</span>
                                 : <span> - <a onClick={() => handleDeleteProduct(product.id)} className="text-primary">Delete Product</a></span>
                             }
+                            <img src={`data:${product.avatar.contentType};base64,${new Buffer.from(product.avatar.data).toString('base64')}`} alt="image" width="30" height="30"/>
                         </li>
-                    )}
+                        )}
                 </ul>
             }
         <div className="create-product-list">
             <h2>Create Product</h2>
-            <form action="/products/create" name="productForm" onSubmit={handleSubmit} method="post" encType="multipart/form-data">
+            <form name="productForm" onSubmit={handleSubmit} method="post">
                 <div className="form-group">
                     <label>Product Name</label>
                     <input type="text" name="productName" value={productForm.productName} onChange={handleChange} className={'form-control' + (created && !productForm.productName ? ' is-invalid' : '')} />
@@ -84,11 +84,7 @@ function CreateProductPage() {
                     }
                 </div>
                 <div className="form-group">
-                    <label>Product Image</label>
-                    <input type="file" name="img" onChange={handleImgChange} className={'form-control' + (created && !productForm.img ? ' is-invalid' : '')} />
-                    {created && !productForm.img &&
-                        <div className="invalid-feedback">Product imge is required</div>
-                    }
+                    <input type="file" name="avatar" onChange={handleChange} />
                 </div>
                 <div className="form-group">
                     <button className="btn btn-primary">
