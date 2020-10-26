@@ -25,7 +25,7 @@ function App() {
     }, []);
 
     return (
-        <div>
+        <div className="container">
         {alert.message &&
             <div className={`alert ${alert.type}`}>{alert.message}</div>
         }

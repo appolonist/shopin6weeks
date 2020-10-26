@@ -1,0 +1,46 @@
+ul.toggler {
+    font-size: calc( 16px + (16 - 14) * (100vw - 320px) / (1140 - 320) );
+    height: 30px;
+    color: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #2d2d2d ;
+    padding: 0;
+    width: auto;
+    border: none;
+    list-style: none;
+    margin-top: 20px;
+    box-sizing: border-box;
+
+}
+ul.toggler > li {
+    border: none;
+    box-sizing: border-box;
+    list-style: none;
+    text-align: center;
+    
+    letter-spacing: .4px;
+    font-weight: bold;
+    text-decoration: none;
+}
+ li.togglerList:link, li.togglerList:visited, li.togglerList:hover, li.togglerList:active {
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #525050;
+    margin: 0px;
+}
+ a.men:link, a.men:visited, a.men:hover, a.men:active {
+    border: none;   
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0px;
+}
+a.women:link, a.women:visited, a.women:hover, a.women:active {
+    border: none;   
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0px;
+}

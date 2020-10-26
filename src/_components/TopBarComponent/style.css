@@ -1,9 +1,11 @@
-.container {
+.top-bar-container {
     width: 100%;
+    min-width: 320px;
     height: 30px;
     padding: 0px;
-    font-size: .875rem;
-    font-family: futura-pt,sans-serif;
+    font-size: calc( 12px + (12 - 10) * (100vw - 320px) / (1140 - 320) );
+    font-weight: bold;
+    font-family: ElenaInitial;
     letter-spacing: .4px;
     background-color: #f8f8f8;
 }
@@ -19,6 +21,7 @@ li {
     float: left;
     height: 100%;
     border-right: 1px solid #ddd;
+    line-height: 30px;
 }
 
 .btn-settings-panel {
@@ -42,13 +45,11 @@ li {
     box-shadow: 0 0 0 1px #ddd;
     margin: 0px 17px;
 }
-a.link {
+
+ul.settingsPanel > li > a.linkk, a:hover, a:visited, a:active {
     text-decoration: none;
     line-height: 30px;
     color: #666;
     margin: 0px 17px;
-}
-.link:hover {
-    text-decoration: none;
-    color: #666;
+    font: inherit;
 }

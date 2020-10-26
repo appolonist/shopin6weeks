@@ -22,8 +22,8 @@ function HomePage() {
     return (
         <div>
         <TopBar />
-        <NavigationBar />
-        <CreateProductPage />
+         <NavigationBar />
+        {/*<CreateProductPage />
         <div className="col-lg-8 offset-lg-2 wraper-users-list">
             <h1>Hi {user.firstName}!</h1>
             <h3>All registered users:</h3>
@@ -45,7 +45,7 @@ function HomePage() {
             }
                 <p className="logout"><Link to="/login">Logout</Link></p>
             
-        </div>
+        </div> */}
     </div>
     );
 }
