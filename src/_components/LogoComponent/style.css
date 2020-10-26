@@ -2,12 +2,12 @@
     font-size: calc( 16px + (20 - 16) * (100vw - 320px) / (1140 - 320) );
     color: white;
     padding: 0px;
-    margin: 0px calc( 17px + (22 - 17) * (100vw - 320px) / (1140 - 320) ) ;
+    margin: 0px 0px 0px calc( 5px + (22 - 5) * (100vw - 320px) / (1140 - 320) ) ;
 }
 a.logo-nav:link, a.logo-nav:active, a.logo-nav:hover,  a.logo-nav:visited {
     text-decoration: none;
     font-size: calc( 16px + (20 - 16) * (100vw - 320px) / (1140 - 320) );
     color: white;
     padding: 0px;
-    margin: 0px calc( 10px + (10 - 6) * (100vw - 320px) / (1140 - 320) ) ;
+    margin: 0px 0px 0px calc( 5px + (22 - 5) * (100vw - 320px) / (1140 - 320) ) ;
 }

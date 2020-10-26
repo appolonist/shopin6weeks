@@ -1,0 +1,32 @@
+.linkBarNav {
+    background-color: #525050;
+    font-family: ElenaInitial;
+    font-size: calc( 16px + (20 - 16) * (100vw - 320px) / (1140 - 320) );
+    width: 100%;
+    height: 30px;
+    }
+p.linkBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+li.linkBarListItem > a{
+    display: block;
+    width: auto;
+    height: auto;
+    font-family: ElenaInitial;
+    color: #fff;
+    font-size: calc( 16px + (20 - 16) * (100vw - 320px) / (1140 - 320) );
+    margin: 0px;
+    padding: 0px;
+}
+li.linkBarListItem {
+    text-align: center;
+    border: none;
+   }
+li.linkBarListItem > li.linkBarListItem > a:active, li.linkBarListItem > a:hover {
+    background-color: #fff;
+    text-decoration: none;
+    color: #2d2d2d;
+    margin: 0px;
+    padding: 0px;
+}

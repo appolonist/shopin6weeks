@@ -1,10 +1,10 @@
 ul.menu {
     color: #fff;
-    font-size: calc( 16px + (16 - 14) * (100vw - 320px) / (1140 - 320) );
+    font-size: calc( 16px + (24 - 16) * (100vw - 320px) / (1140 - 320) );
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 li.menuList {
     border: none;
-    padding-right: calc( 5px + (20 - 5) * (100vw - 320px) / (1140 - 320) );
+    padding: calc( 5px + (8 - 5) * (100vw - 320px) / (1140 - 320) ) calc( 5px + (20 - 5) * (100vw - 320px) / (1140 - 320) );
 }
