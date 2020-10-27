@@ -7,6 +7,7 @@
     }
 p.linkBar {
     display: grid;
+    margin: 0px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 li.linkBarListItem > a{

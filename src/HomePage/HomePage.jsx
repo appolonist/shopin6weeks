@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
+import { userActions } from '../_actions';
+
 import { TopBar } from '../_components'
 import { NavigationBar } from '../_components';
-import { userActions } from '../_actions';
+import { AdvertBanner } from '../_components';
+import { CreateProductPage } from '../CreateProductPage';
+
 import styles from './style.css';
-import { CreateProductPage } from '../CreateProductPage'
 function HomePage() {
     const users = useSelector(state => state.users);
     const user = useSelector(state => state.authentication.user);
@@ -23,6 +27,7 @@ function HomePage() {
         <div>
         <TopBar />
          <NavigationBar />
+         <AdvertBanner interval= {3000} images={['../static/img/adverts/advert0.jpg', '../static/img/adverts/advert1.jpg']}/>
         {/*<CreateProductPage />
         <div className="col-lg-8 offset-lg-2 wraper-users-list">
             <h1>Hi {user.firstName}!</h1>

@@ -1,0 +1,65 @@
+import React, {useState, useEffect} from 'react';
+
+import './style.css';
+
+export function AdvertBanner({images=[], interval=3000}){
+    const [thumbnails, setThumnails] = useState([]);
+    const [previousSlideStyle, setPreviousSlideStyle] = useState("");
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [nextSlideStyle, setNextSlideStyle] = useState("");
+    const [currentSlideStyle, setCurrentSlideStyle] = useState("");
+
+    useEffect(()=>{
+        setThumnails(images);
+        setCurrentSlideStyle({
+            backgroundImage: "url('"+images[currentSlide]+"')"
+        });
+
+        if(currentSlide>0){
+            setPreviousSlideStyle({
+                backgroundImage: "url('"+images[currentSlide-1]+"')"
+            });
+        }else{
+            setPreviousSlideStyle({
+                backgroundImage: "url('"+images[images.length-1]+"')"
+            });
+        }
+
+        if(currentSlide === images.length-1){
+            setNextSlideStyle({
+                backgroundImage: "url('"+images[0]+"')"
+            });
+        }else{
+            setNextSlideStyle({
+                backgroundImage: "url('"+images[currentSlide+1]+"')"
+            });
+        } 
+
+        const loop = setInterval(()=>{
+            if(currentSlide === images.length-1){
+                setCurrentSlide(0);
+            }else{
+                setCurrentSlide(currentSlide+1);
+            }
+        }, interval);
+        return () => clearInterval(loop); 
+    }, [images, currentSlide, interval]);
+
+    return (
+
+        ///////IMG src add!!!!
+        <section className="slideshow">
+            <div className="slide-holder">
+                <section className="slide previous-slide">
+                    <img style={previousSlideStyle} className="slide-thumbnail"/>
+                </section>
+                <section className="slide current-slide">
+                    <img style={currentSlideStyle} className="slide-thumbnail"/>
+                </section>
+                <section className="slide next-slide">
+                    <img style={nextSlideStyle} className="slide-thumbnail"/>
+                </section>
+            </div>
+        </section>
+    )
+}
