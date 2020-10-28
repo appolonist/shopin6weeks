@@ -7,6 +7,7 @@ import { userActions } from '../_actions';
 import { TopBar } from '../_components'
 import { NavigationBar } from '../_components';
 import { AdvertBanner } from '../_components';
+import { ProductThumbnailList } from '../_components';
 import { CreateProductPage } from '../CreateProductPage';
 
 import styles from './style.css';
@@ -28,6 +29,7 @@ function HomePage() {
         <TopBar />
          <NavigationBar />
          <AdvertBanner interval= {3000} images={['../static/img/adverts/advert0.jpg', '../static/img/adverts/advert1.jpg']}/>
+         <ProductThumbnailList />
         {/*<CreateProductPage />
         <div className="col-lg-8 offset-lg-2 wraper-users-list">
             <h1>Hi {user.firstName}!</h1>
