@@ -1,8 +1,8 @@
 import React from 'react';
 import style from './style.css';
 
-export function ProductThumbnail() {
+export function ProductThumbnail(prop) {
     return(
-        <h2>Thumbnail</h2>
+        <img className="thumb" src={prop.imgUrl} />
     );
 }

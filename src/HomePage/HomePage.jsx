@@ -29,7 +29,7 @@ function HomePage() {
         <TopBar />
          <NavigationBar />
          <AdvertBanner interval= {3000} images={['../static/img/adverts/advert0.jpg', '../static/img/adverts/advert1.jpg']}/>
-         <ProductThumbnailList />
+         <ProductThumbnailList/>
         {/*<CreateProductPage />
         <div className="col-lg-8 offset-lg-2 wraper-users-list">
             <h1>Hi {user.firstName}!</h1>
