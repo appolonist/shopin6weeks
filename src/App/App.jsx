@@ -1,3 +1,5 @@
+import { hot } from 'react-hot-loader/root';
+
 import React, { useEffect } from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,12 +10,10 @@ import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { CreateProductPage } from '../CreateProductPage';
-import { hot } from 'react-hot-loader';
-
 import style from "./style.css";
 
-function App() {
 
+function App() {
     const alert = useSelector(state => state.alert);
     const dispatch = useDispatch();
 
@@ -43,4 +43,4 @@ function App() {
     );
 };
 
-export default hot(module)(App);
+export default hot(App);

@@ -1,6 +1,5 @@
-import React, { Suspense, lazy} from 'react';
+import React from 'react';
 import style from './style.css';
-import { ProductThumbnail } from "./";
 
 const ProductThumbnailList = () => {
     const arr =["../../static/img/products/dressess/dress0.jpg",
@@ -11,7 +10,7 @@ const ProductThumbnailList = () => {
        <ul>
            {arr.map((url, index)=>
            <li key={index}>
-               <ProductThumbnail imgUrl={url}/>
+                <img className="thumb" src={url} />
            </li>
            )}
        </ul>
@@ -23,4 +22,4 @@ const ProductThumbnailList = () => {
     )
 }
 
-export default { ProductThumbnailList };
+export { ProductThumbnailList };
