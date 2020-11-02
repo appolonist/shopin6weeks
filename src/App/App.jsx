@@ -1,6 +1,5 @@
 import { hot } from 'react-hot-loader/root';
-
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../_helpers';
@@ -30,6 +29,7 @@ function App() {
             <div className={`alert ${alert.type}`}>{alert.message}</div>
         }
         <Router history={history}>
+         <Suspense fallback={<div>Loading...fromhome</div>}>
             <Switch>
                 <PrivateRoute exact path="/" component={HomePage} />
                 <Route path="/login" component={LoginPage} />
@@ -37,6 +37,7 @@ function App() {
                 <Route path="/products/create" component={CreateProductPage} />
                 <Redirect from="*" to="/" />
             </Switch>
+         </Suspense>
         </Router>
         </div>
         

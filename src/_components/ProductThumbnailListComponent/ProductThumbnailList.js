@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './style.css';
 
-const ProductThumbnailList = () => {
+export default function ProductThumbnailList() {
     const arr =["../../static/img/products/dressess/dress0.jpg",
                 "../../static/img/products/women/jumpers/jumper0.jpg",
                 "../../static/img/products/women/t-shirts/t-shirt0.jpg",
@@ -13,13 +13,7 @@ const ProductThumbnailList = () => {
                 <img className="thumb" src={url} />
            </li>
            )}
-       </ul>
- 
-        
- 
-        
+       </ul> 
     
     )
 }
-
-export { ProductThumbnailList };

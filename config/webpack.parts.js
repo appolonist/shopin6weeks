@@ -207,9 +207,6 @@ exports.loadJavaScript = () => ({
 });
 
 exports.devServer = () => ({
-  output:{
-    path: outputPath
-  },
   
   plugins: [
     new WebpackPluginServe({

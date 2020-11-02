@@ -6,4 +6,3 @@ export * from './TogglerComponent/Toggler';
 export * from './MenuComponent/Menu';
 export * from './LinkBarComponent/LinkBar';
 export * from './AdvertBannerComponent/AdvertBanner';
-export * from './ProductThumbnailListComponent/ProductThumbnailList';
