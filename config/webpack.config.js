@@ -10,6 +10,8 @@ const productionConfig = require('./webpack.prod.config');
 const developmentConfig = merge([
   {
     output: {
+      chunkFilename: "chunk-[name].[contenthash].js",
+      publicPath: "/",
       path: path.join(process.cwd(), "dist"),
       filename: '[name].bundle.js'
     },
