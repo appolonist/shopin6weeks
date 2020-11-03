@@ -9,12 +9,11 @@ import { NavigationBar } from '../_components';
 import { AdvertBanner } from '../_components';
 // import { ProductThumbnailList } from '../_components'
 import { CreateProductPage } from '../CreateProductPage';
-const ProductThumbnailList = React.lazy(()=>import('../_components/ProductThumbnailListComponent/ProductThumbnailList'));
+//const ProductThumbnailList = React.lazy(()=>import('../_components/ProductThumbnailListComponent/ProductThumbnailList'));
 
 import styles from './style.css';
 
 export function HomePage() {
-    console.log(ProductThumbnailList);
     const users = useSelector(state => state.users);
     const user = useSelector(state => state.authentication.user);
     const dispatch = useDispatch();
@@ -32,9 +31,9 @@ export function HomePage() {
         <TopBar />
          <NavigationBar />
          <AdvertBanner interval= {3000} images={['../static/img/adverts/advert0.jpg', '../static/img/adverts/advert1.jpg']}/>
-          <Suspense fallback={(<div>Loading...</div>)}>
+          {/* <Suspense fallback={(<div>Loading...</div>)}>
             <ProductThumbnailList />
-         </Suspense> 
+         </Suspense>  */}
          
       
          
