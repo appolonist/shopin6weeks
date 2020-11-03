@@ -9,6 +9,7 @@ import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { CreateProductPage } from '../CreateProductPage';
+const ProductThumbnailList = React.lazy(()=>import('../_components/ProductThumbnailListComponent/ProductThumbnailList'))
 import style from "./style.css";
 
 
@@ -29,7 +30,8 @@ function App() {
             <div className={`alert ${alert.type}`}>{alert.message}</div>
         }
         <Router history={history}>
-         <Suspense fallback={<div>Loading...fromhome</div>}>
+         <Suspense fallback={<div>Loading...from home</div>}>
+             <ProductThumbnailList />
             <Switch>
                 <PrivateRoute exact path="/" component={HomePage} />
                 <Route path="/login" component={LoginPage} />
