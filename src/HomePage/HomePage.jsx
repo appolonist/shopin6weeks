@@ -7,9 +7,9 @@ import { userActions } from '../_actions';
 import { TopBar } from '../_components'
 import { NavigationBar } from '../_components';
 import { AdvertBanner } from '../_components';
-// import { ProductThumbnailList } from '../_components'
+import { ProductThumbnailList } from '../_components'
 import { CreateProductPage } from '../CreateProductPage';
-//const ProductThumbnailList = React.lazy(()=>import('../_components/ProductThumbnailListComponent/ProductThumbnailList'));
+const ProductThumbnailList = React.lazy(()=>import('../_components/ProductThumbnailListComponent/ProductThumbnailList'));
 
 import styles from './style.css';
 
