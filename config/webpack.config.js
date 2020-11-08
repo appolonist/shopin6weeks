@@ -25,10 +25,8 @@ const getConfig = (mode) => {
     parts.page({
       title: "Appolonist Shop",
       entry: {
-        app: ["core-js/modules/es6.promise",
-        "core-js/modules/es6.array.iterator", 
-        '@hot-loader/react-dom', 
-        path.resolve(__dirname, '..', 'src', 'index.js')
+        app: ['react-hot-loader/patch', 
+              path.resolve(__dirname, '..', 'src', 'index.js')
       ]},
       chunks: ["app", "runtime", "vendor"],
       mode,
