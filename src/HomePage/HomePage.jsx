@@ -1,41 +1,35 @@
 import React, { Suspense, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { userActions } from '../_actions';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { userActions } from '../_actions';
 
 import { TopBar } from '../_components'
 import { NavigationBar } from '../_components';
 import { AdvertBanner } from '../_components';
-import { ProductThumbnailList } from '../_components'
-import { CreateProductPage } from '../CreateProductPage';
-const ProductThumbnailList = React.lazy(()=>import('../_components/ProductThumbnailListComponent/ProductThumbnailList'));
-
+//import { ProductThumbnailList } from '../_components'
+import { CreateProductPage } from '../CreateProductPage'; 
 import styles from './style.css';
+//const ProductThumbnailList = React.lazy(() => import('../_components/ProductThumbnailListComponent/ProductThumbnailList'));
 
-export function HomePage() {
-    const users = useSelector(state => state.users);
-    const user = useSelector(state => state.authentication.user);
-    const dispatch = useDispatch();
+export default function HomePage() {
+    // const users = useSelector(state => state.users);
+    // const user = useSelector(state => state.authentication.user);
+    // const dispatch = useDispatch();
+     
+    // useEffect(() => {
+    //     dispatch(userActions.getAll());
+    // }, []);
 
-    useEffect(() => {
-        dispatch(userActions.getAll());
-    }, []);
-
-    function handleDeleteUser(id) {
-        dispatch(userActions.delete(id));
-    }
-
+    // function handleDeleteUser(id) {
+    //     dispatch(userActions.delete(id));
+    // }
     return (
         <div>
         <TopBar />
          <NavigationBar />
          <AdvertBanner interval= {3000} images={['../static/img/adverts/advert0.jpg', '../static/img/adverts/advert1.jpg']}/>
-          {/* <Suspense fallback={(<div>Loading...</div>)}>
-            <ProductThumbnailList />
-         </Suspense>  */}
-         
-      
+          
          
         
     </div>

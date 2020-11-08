@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../_helpers';
 import { alertActions } from '../_actions';
 import { PrivateRoute } from '../_components';
-import { HomePage } from '../HomePage';
+import { HomePage as HomePage1 } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { CreateProductPage } from '../CreateProductPage';
-const ProductThumbnailList = React.lazy(()=>import('../_components/ProductThumbnailListComponent/ProductThumbnailList'))
+const HomePage = React.lazy(() => import('../HomePage/HomePage'))
 import style from "./style.css";
 
 
@@ -29,17 +29,18 @@ function App() {
         {alert.message &&
             <div className={`alert ${alert.type}`}>{alert.message}</div>
         }
+    
         <Router history={history}>
-         <Suspense fallback={<div>Loading...from home</div>}>
-             <ProductThumbnailList />
+            <Suspense fallback={<div>Loading...</div>}>
             <Switch>
-                <PrivateRoute exact path="/" component={HomePage} />
+                <PrivateRoute exact path="/" component={HomePage1} />
                 <Route path="/login" component={LoginPage} />
+                <Route name="lazy" path="/lazy" component={()=><HomePage/>} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/products/create" component={CreateProductPage} />
                 <Redirect from="*" to="/" />
             </Switch>
-         </Suspense>
+            </Suspense>
         </Router>
         </div>
         
