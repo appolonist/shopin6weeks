@@ -12,7 +12,7 @@ const cssnano = require("cssnano");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-
+const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const APP_SOURCE = path.resolve(__dirname, "../src");
 const ALL_FILES = glob.sync(path.resolve(__dirname, "../src/*.js"));
 const outputPath = path.join(process.cwd(), '/dist');
@@ -23,6 +23,11 @@ exports.page = ({ path = "", template, title, entry, chunks, mode } = {}) => ({
       ? addEntryToAll(entry, "webpack-plugin-serve/client")
       : entry,
   plugins: [
+    new ReactRefreshPlugin({
+      overlay: {
+        sockIntegration: 'wps',
+      },
+    }),
     new HtmlWebpackPlugin({
       template,
       chunks,

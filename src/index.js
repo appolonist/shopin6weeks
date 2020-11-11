@@ -5,17 +5,10 @@ import { store } from './_helpers';
 import { App } from './App';
 
 
-const renderApp = () => render(
+render(
     <Provider store={store}>
         <App />
     </Provider>,
     document.getElementById('app')
 );
 
-renderApp();
-
-if (module.hot) {
-    module.hot.accept('./App/App.jsx', () => {
-        renderApp();
-    });
-}
