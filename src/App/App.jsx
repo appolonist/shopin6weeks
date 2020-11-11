@@ -1,4 +1,3 @@
-import { hot } from 'react-hot-loader/root';
 import React, { Suspense, useEffect } from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +12,7 @@ const HomePage = React.lazy(() => import('../HomePage/HomePage'))
 import style from "./style.css";
 
 
-function App() {
+export default function App() {
     const alert = useSelector(state => state.alert);
     const dispatch = useDispatch();
 
@@ -35,7 +34,7 @@ function App() {
             <Switch>
                 <PrivateRoute exact path="/" component={HomePage1} />
                 <Route path="/login" component={LoginPage} />
-                <Route name="lazy" path="/lazy" component={()=><HomePage/>} />
+                <Route name="lazy" path="/lazy" component={HomePage} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/products/create" component={CreateProductPage} />
                 <Redirect from="*" to="/" />
@@ -46,5 +45,3 @@ function App() {
         
     );
 };
-
-export default hot(App);
