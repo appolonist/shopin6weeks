@@ -8,7 +8,7 @@ import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { CreateProductPage } from '../CreateProductPage';
-const Lazy = React.lazy(() => import('../_components/Lazy'));
+const Lazy = React.lazy(() => import('../_components/Lazy/Lazy'));
 import style from "./style.css";
 
 
