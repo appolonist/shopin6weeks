@@ -224,7 +224,32 @@ exports.devServer = () => ({
       //liveReload: true, // this kill hmr!
       waitForBuild: true,
       hmr: true,
-      historyFallback: true
+      historyFallback: {
+        disableDotRule: true,
+        verbose: true,
+        rewrites: [
+          {
+            from: '/wps',
+            to: (context) => context.parsedUrl.pathname,
+          },
+          {
+            from: /.js/,
+            to: (context) => context.parsedUrl.pathname,
+          },
+          {
+            from: /.css/,
+            to: (context) => context.parsedUrl.pathname,
+          },
+          {
+            from: /.png/,
+            to: (context) => context.parsedUrl.pathname,
+          },
+          {
+            from: /.jpg/,
+            to: (context) => context.parsedUrl.pathname,
+          },
+        ],
+      }
     }),
   ],
   watch: true,
