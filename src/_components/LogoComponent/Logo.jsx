@@ -4,8 +4,10 @@ import style from './style.css';
 
 function Logo() {
     return (
-        <a className="logo-nav" href="/">Appolonist</a>
+        <nav data-test="logoComponent">
+            <a data-test="logoLink" className="logo-nav" href="/">Appolonist</a>
+        </nav>
     )
 }
 
-export { Logo };
+export default Logo;

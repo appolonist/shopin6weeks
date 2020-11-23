@@ -6,6 +6,5 @@ module.exports = {
     testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],
     testPathIgnorePatterns: ['\\\\node_modules\\\\'],
     testURL: 'http://localhost',
-    transformIgnorePatterns: ['<rootDir>/mode_modules/'],
     verbose: false
     }
