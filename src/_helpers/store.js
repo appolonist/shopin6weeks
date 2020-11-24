@@ -24,3 +24,5 @@ const loggerMiddleware = createLogger();
 };
 
 export default store();
+
+export const middlewares = [thunkMiddleware];

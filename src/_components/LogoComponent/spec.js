@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { findByTestAtrr } from '../../_helpers';
-import Logo from './Logo';
+import { Logo } from './Logo';
 
 const setUp = (props={}) => {
     const component = shallow(<Logo {...props} />);

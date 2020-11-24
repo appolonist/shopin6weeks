@@ -1,8 +1,44 @@
-import React from "react";
+import { App } from './App';
 import { shallow } from "enzyme";
-import App from './App';
+import { findByTestAtrr, testStore } from '../_helpers';
+import React from "react";
 
-it("renders without crashing", () => {
-  const wrapper = shallow(<App />);
-  expect(wrapper.state("error")).toEqual(null);
+const setUp = (initialState={}) => {
+  const store = testStore(initialState);
+  const wrapper = shallow(<App store={store} />).childAt(0).dive();
+  return wrapper;
+};
+
+describe('App Component', () => {
+
+  let wrapper;
+
+   beforeEach(() => {
+      const initialState = {
+          authentication: {},
+          registration: {},
+          productCreation: {},
+          products: {},
+          users: {},
+          alert: {}
+      }
+      wrapper = setUp(initialState);
+  });
+  it('Should render without errors', () => {
+      const component = findByTestAtrr(wrapper, 'appComponent');
+      expect(component.length).toBe(1);
+  });
+
+  // it('exampleMethod_updatesState Method should update state as expected', () => {
+  //     const classInstance = wrapper.instance();
+  //     classInstance.exampleMethod_updatesState();
+  //     const newState = classInstance.state.hideBtn;
+  //     expect(newState).toBe(true);
+  // });
+
+  // it('exampleMethod_returnsAValue Method should return value as expected', () => {
+  //     const classInstance = wrapper.instance();
+  //     const newValue = classInstance.exampleMethod_returnsAValue(6);
+  //     expect(newValue).toBe(7);
+  // });
 });

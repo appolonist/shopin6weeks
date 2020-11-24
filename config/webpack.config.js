@@ -25,8 +25,7 @@ const getConfig = (mode) => {
     parts.page({
       title: "Appolonist Shop",
       entry: {
-        app: ['react-hot-loader/patch', 
-              path.resolve(__dirname, '..', 'src', 'index.js')
+        app: [path.resolve(__dirname, '..', 'src', 'index.js')
       ]},
       chunks: ["app", "runtime", "vendor"],
       mode,

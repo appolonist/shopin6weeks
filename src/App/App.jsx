@@ -12,7 +12,7 @@ const Lazy = React.lazy(() => import('../_components/Lazy/Lazy'));
 import style from "./style.css";
 
 
-export default function App() {
+export function App() {
     const alert = useSelector(state => state.alert);
     const dispatch = useDispatch();
 
@@ -24,7 +24,7 @@ export default function App() {
     }, []);
 
     return (
-        <div className="container">
+        <div data-test="appComponent" className="container">
         {alert.message &&
             <div className={`alert ${alert.type}`}>{alert.message}</div>
         }
