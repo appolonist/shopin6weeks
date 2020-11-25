@@ -3,26 +3,27 @@ import { shallow } from "enzyme";
 import { findByTestAtrr, testStore } from '../_helpers';
 import React from "react";
 
+jest.mock("react-redux", () => ({
+  connect: () => jest.fn(),
+  useSelector: jest.fn(fn => fn()),
+  useDispatch: () => jest.fn()
+}));
+
 const setUp = (initialState={}) => {
   const store = testStore(initialState);
   const wrapper = shallow(<App store={store} />).childAt(0).dive();
+
   return wrapper;
 };
 
 describe('App Component', () => {
-
-  let wrapper;
-
+   let wrapper;
    beforeEach(() => {
       const initialState = {
-          authentication: {},
-          registration: {},
-          productCreation: {},
-          products: {},
-          users: {},
-          alert: {}
+        type: '', message: ''
       }
-      wrapper = setUp(initialState);
+       wrapper = setUp(initialState);
+    
   });
   it('Should render without errors', () => {
       const component = findByTestAtrr(wrapper, 'appComponent');
