@@ -15,11 +15,7 @@ const loggerMiddleware = createLogger();
             loggerMiddleware
         ))      
     );
-    if (module.hot) {
-        module.hot.accept('../_reducers', () => {
-            store.replaceReducer(rootReducer);
-        });
-    };
+  
     return store;
 };
 
