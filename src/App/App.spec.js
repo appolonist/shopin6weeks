@@ -4,14 +4,14 @@ import { findByTestAtrr, testStore } from '../_helpers';
 import React from "react";
 
 jest.mock("react-redux", () => ({
-  connect: () => jest.fn(),
-  useSelector: jest.fn(fn => fn()),
+  useSelector: jest.fn(fn => fn().mockImplementation(selector => selector())),
   useDispatch: () => jest.fn()
 }));
 
 const setUp = (initialState={}) => {
   const store = testStore(initialState);
   const wrapper = shallow(<App store={store} />).childAt(0).dive();
+  console.log(wrapper.debug());
 
   return wrapper;
 };
@@ -20,7 +20,12 @@ describe('App Component', () => {
    let wrapper;
    beforeEach(() => {
       const initialState = {
-        type: '', message: ''
+        authentication: {},
+        registration: {},
+        productCreation: {},
+        products: {},
+        users: {},
+        alert: {}
       }
        wrapper = setUp(initialState);
     

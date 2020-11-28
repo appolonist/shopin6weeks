@@ -3,7 +3,6 @@ import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../_helpers';
 import { alertActions } from '../_actions';
-import { alertSelector } from './selectors';
 import { PrivateRoute } from '../_components';
 import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
@@ -14,7 +13,7 @@ import style from "./style.css";
 
 
 export function App() {
-    const alert = useSelector(alertSelector);
+    const alert = useSelector(state => state.alert);
     const dispatch = useDispatch();
 
     useEffect(() => {

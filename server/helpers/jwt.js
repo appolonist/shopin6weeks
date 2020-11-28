@@ -13,7 +13,8 @@ function jwt() {
             '/users/register',
             '/products/create',
             '/products',
-            '/products/:id'
+            '/products/:id',
+            '/lazy'
 
         ]
     });
