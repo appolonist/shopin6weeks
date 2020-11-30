@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { history } from '../_helpers';
 import { alertActions } from '../_actions';
 import { PrivateRoute } from '../_components';
@@ -12,7 +12,7 @@ const Lazy = React.lazy(() => import('../_components/Lazy/Lazy'));
 import style from "./style.css";
 
 
-export function App() {
+export default function App() {
     const alert = useSelector(state => state.alert);
     const dispatch = useDispatch();
 

@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from 'redux';
 import rootReducer from '../_reducers';
-import { middlewares } from '../_helpers/store';
+import { middlewares } from './store';
 
 export const findByTestAtrr = (component, attr) => {
     const wrapper = component.find(`[data-test='${attr}']`);

@@ -4,7 +4,10 @@ const { mode } = require("webpack-nano/argv");
 const commonConfig = merge([
   {
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      alias: {
+        'react-redux': require.resolve('react-redux'),
+      },
     },
     mode
 

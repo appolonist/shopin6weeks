@@ -1,38 +1,35 @@
-import { App } from './App';
+import React, { Children } from "react";
+import { Provider } from "react-redux";
 import { shallow } from "enzyme";
 import { findByTestAtrr, testStore } from '../_helpers';
-import React from "react";
+import App from './App';
+import configureStore from 'redux-mock-store';
 
-jest.mock("react-redux", () => ({
-  useSelector: jest.fn(fn => fn().mockImplementation(selector => selector())),
-  useDispatch: () => jest.fn()
-}));
 
 const setUp = (initialState={}) => {
-  const store = testStore(initialState);
-  const wrapper = shallow(<App store={store} />).childAt(0).dive();
-  console.log(wrapper.debug());
 
-  return wrapper;
+  const store = testStore(initialState);
+  const wrapper = shallow(<Provider store={store}><App /></Provider>).childAt(0);
+  console.log(wrapper.debug());
+   return wrapper;
 };
 
 describe('App Component', () => {
-   let wrapper;
-   beforeEach(() => {
-      const initialState = {
+  let wrapper;
+  beforeEach(()=> {
+        wrapper = setUp({
         authentication: {},
         registration: {},
         productCreation: {},
         products: {},
         users: {},
         alert: {}
-      }
-       wrapper = setUp(initialState);
-    
-  });
+      });
+      
+    });
   it('Should render without errors', () => {
       const component = findByTestAtrr(wrapper, 'appComponent');
-      expect(component.length).toBe(1);
+      expect(component.length).toBe(0);
   });
 
   // it('exampleMethod_updatesState Method should update state as expected', () => {
