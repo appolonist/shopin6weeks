@@ -1,16 +1,15 @@
 import React, { Children } from "react";
-import { Provider } from "react-redux";
+import * as redux from "react-redux";
 import { shallow } from "enzyme";
 import { findByTestAtrr, testStore } from '../_helpers';
 import App from './App';
 import configureStore from 'redux-mock-store';
-
+import { render } from "@testing-library/react";
 
 const setUp = (initialState={}) => {
 
   const store = testStore(initialState);
-  const wrapper = shallow(<Provider store={store}><App /></Provider>).childAt(0);
-  console.log(wrapper.debug());
+  const wrapper = render(<redux.Provider store={store}><App /></redux.Provider>);
    return wrapper;
 };
 
@@ -28,8 +27,8 @@ describe('App Component', () => {
       
     });
   it('Should render without errors', () => {
-      const component = findByTestAtrr(wrapper, 'appComponent');
-      expect(component.length).toBe(0);
+      const component = wrapper.find(`[data-test='appComponent']`);
+      expect(component.length).toBe(1);
   });
 
   // it('exampleMethod_updatesState Method should update state as expected', () => {
