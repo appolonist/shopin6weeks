@@ -36,6 +36,7 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+    "@testing-library/react": "^11.2.2",
     "autoprefixer": "^9.8.6",
     "babel-core": "^6.26.3",
     "babel-jest": "^26.3.0",
