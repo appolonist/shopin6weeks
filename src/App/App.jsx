@@ -24,7 +24,7 @@ export default function App() {
     }, []);
 
     return (
-        <div data-test="appComponent" className="container">
+        <div data-testid="appComponent" className="container">
         {alert.message &&
             <div className={`alert ${alert.type}`}>{alert.message}</div>
         }

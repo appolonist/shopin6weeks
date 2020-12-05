@@ -1,34 +1,16 @@
-import React, { Children } from "react";
-import * as redux from "react-redux";
-import { shallow } from "enzyme";
-import { findByTestAtrr, testStore } from '../_helpers';
+import React from "react";
+import { testRender, store } from '../_helpers';
 import App from './App';
-import configureStore from 'redux-mock-store';
-import { render } from "@testing-library/react";
 
-const setUp = (initialState={}) => {
 
-  const store = testStore(initialState);
-  const wrapper = render(<redux.Provider store={store}><App /></redux.Provider>);
-   return wrapper;
-};
 
 describe('App Component', () => {
-  let wrapper;
-  beforeEach(()=> {
-        wrapper = setUp({
-        authentication: {},
-        registration: {},
-        productCreation: {},
-        products: {},
-        users: {},
-        alert: {}
-      });
-      
-    });
   it('Should render without errors', () => {
-      const component = wrapper.find(`[data-test='appComponent']`);
-      expect(component.length).toBe(1);
+      const testStore = store;
+      const { getByTestId } = testRender(<App />, { testStore });
+      const appComponent = getByTestId("appComponent");
+      console.log(appComponent);
+      expect(appComponent.length).toBe(1);
   });
 
   // it('exampleMethod_updatesState Method should update state as expected', () => {
