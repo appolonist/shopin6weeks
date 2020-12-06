@@ -7,9 +7,8 @@ import App from './App';
 describe('App Component', () => {
   it('Should render without errors', () => {
       const testStore = store;
-      const { getByTestId } = testRender(<App />, { testStore });
+      const { getByTestId } = testRender(<App />, {testStore});
       const appComponent = getByTestId("appComponent");
-      console.log(appComponent);
       expect(appComponent.length).toBe(1);
   });
 
